@@ -11,7 +11,7 @@ MainBoard::MainBoard(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setFixedSize(1920, 1080);
-    this->setStyleSheet("background-color: lightgray;");
+    this->setStyleSheet("background-color: #85C2FF;");
 
     const int BOARD_ROWS = 8;
     const int BOARD_COLS = 8;

@@ -11,7 +11,7 @@ MainBoard::MainBoard(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setFixedSize(1920, 1080);
-    this->setStyleSheet("background-color: #85C2FF;");
+    this->setStyleSheet("background-color: #D6EBFF;");
 
     const int BOARD_ROWS = 8;
     const int BOARD_COLS = 8;
@@ -55,22 +55,22 @@ MainBoard::MainBoard(QWidget *parent) :
             {
                 if((j % 2) == 0)
                 {
-                    Sqares[i][j]->setStyleSheet("background-color: white;");
+                    Sqares[i][j]->setStyleSheet("background-color: #EBF5FF;");
                 }
                 else
                 {
-                    Sqares[i][j]->setStyleSheet("background-color: black;");
+                    Sqares[i][j]->setStyleSheet("background-color: #0A1F33;");
                 }
             }
             else
             {
                if((j % 2) != 0)
                {
-                    Sqares[i][j]->setStyleSheet("background-color: white ;");
+                    Sqares[i][j]->setStyleSheet("background-color: #EBF5FF ;");
                }
                else
                {
-                    Sqares[i][j]->setStyleSheet("background-color: black;");
+                    Sqares[i][j]->setStyleSheet("background-color: #0A1F33;");
                }
             }
         }

@@ -13,8 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainboard.cpp
+        mainboard.cpp \
+    menu.cpp \
+    chesslogic.cpp \
+    piece.cpp
 
-HEADERS  += mainboard.h
+HEADERS  += mainboard.h \
+    menu.h \
+    chesslogic.h \
+    piece.h
 
-FORMS    += mainboard.ui
+FORMS    += mainboard.ui \
+    menu.ui

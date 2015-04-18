@@ -3,33 +3,39 @@
 
 #include "QString"
 
-
-struct position {
-  int x;
-  int y;
-} ;
-
-
-typedef bool (*CanMove) (position old_pos, position new_pos);
-
-
-struct piece{
-    int symbol;
-    int owner; // 0 white 1 black
-    CanMove can_move;
-};
 class ChessLogic
 {
+    struct position {
+      int x;
+      int y;
+    } ;
+
+/*
+    typedef struct piece{
+      int symbol;
+      int owner; // 0 white 1 black
+      bool (ChessLogic::*can_move)(position old_pos, position new_pos);
+    } piece_t;
+*/
+
 private:
     int board[8][8];
-    piece game_pieces[10000];
+    //piece game_pieces[10000];
+
+
+    const int OWNER_WHITE = 0;
+    const int OWNER_BLACK = 1;
+    const int RESULT_ACTIVE = 0;
+    const int RESULT_WHITE_WINS = 1;
+    const int RESULT_BLACK_WINS = 2;
+    const int RESULT_DRAW = 3;
 public:
     ChessLogic(int skirmish); // Initialize the game board
-    bool MoviePiece(position old_pos, position new_pos);
+    bool MovePiece(position old_pos, position new_pos);
     int** GetBoard(); // return A COPY of the array
 
     int CheckResult(); //0 still played 1 white wins 2 black wins 3 draw
-
+    bool PawnCanMove(position old_pos, position new_pos);
 };
 
 #endif // CHESSLOGIC_H

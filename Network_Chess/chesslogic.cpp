@@ -10,6 +10,10 @@ ChessLogic::ChessLogic(int skirmish, int current_turn)
     {
         this->current_turn = current_turn;
     }
+    else
+    {
+        this->current_turn = WHITE_TURN;
+    }
     for(int i = 0; i < 8; i++)
     {
         for(int j = 0; j < 8; j++)
@@ -34,6 +38,10 @@ ChessLogic::ChessLogic(int skirmish, int current_turn)
 
 }
 
+/*
+ * checks if a piece can move to a location. if it can moves it.
+ * if it can't move throws an exception
+ */
 
 bool ChessLogic::MovePiece(position old_pos, position new_pos)
 {

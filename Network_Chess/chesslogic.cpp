@@ -22,7 +22,7 @@ ChessLogic::ChessLogic(int skirmish)
     // General Case, standard chess game
     else
     {
-        //piece whitePawn;
+        piece whitePawn;
         //whitePawn.symbol = 1;
         //whitePawn.owner = 0;
         //whitePawn.can_move = &ChessLogic::PawnCanMove;
@@ -65,7 +65,7 @@ bool  ChessLogic::PawnCanMove(position old_pos, position new_pos)
     }
 
     // White move
-    /*
+/*
     if(game_pieces[board[old_pos.x][old_pos.y]].owner == OWNER_WHITE)
     {
 
@@ -75,6 +75,7 @@ bool  ChessLogic::PawnCanMove(position old_pos, position new_pos)
     {
 
     }
-    */
+*/
     return true;
+
 }

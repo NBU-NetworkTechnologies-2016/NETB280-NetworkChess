@@ -10,17 +10,19 @@ class ChessLogic
       int y;
     } ;
 
-/*
+
     typedef struct piece{
-      int symbol;
+      int type;
       int owner; // 0 white 1 black
+      position current_pos;
+
       bool (ChessLogic::*can_move)(position old_pos, position new_pos);
     } piece_t;
-*/
+
 
 private:
     int board[8][8];
-    //piece game_pieces[10000];
+    piece game_pieces[100];
 
 
     const int OWNER_WHITE = 0;

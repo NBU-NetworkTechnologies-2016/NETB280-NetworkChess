@@ -4,16 +4,9 @@
 
 
 
-ChessLogic::ChessLogic(int skirmish, int current_turn)
+ChessLogic::ChessLogic(int skirmish, bool current_turn)
 {
-    if(current_turn == WHITE_TURN || current_turn == BLACK_TURN)
-    {
-        this->current_turn = current_turn;
-    }
-    else
-    {
-        this->current_turn = WHITE_TURN;
-    }
+    this->current_turn = current_turn;
     for(int i = 0; i < 8; i++)
     {
         for(int j = 0; j < 8; j++)
@@ -113,6 +106,7 @@ bool ChessLogic::MovePiece(position old_pos, position new_pos)
 
     }
 
+    //this->current_turn =
 }
 
 int** ChessLogic::GetBoard() // return A COPY of the array

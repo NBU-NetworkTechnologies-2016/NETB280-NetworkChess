@@ -46,9 +46,7 @@ private:
     const int RESULT_BLACK_WINS = 2;
     const int RESULT_DRAW = 3;
 
-    const int WHITE_TURN = 1;
-    const int BLACK_TURN = 2;
-    int current_turn;
+    bool current_turn;
 public:
     ChessLogic(int skirmish, int current_turn); // Initialize the game board
     bool MovePiece(position old_pos, position new_pos);

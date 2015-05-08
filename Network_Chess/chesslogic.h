@@ -13,7 +13,6 @@ class ChessLogic
 
     typedef struct piece{
       int type;
-      int owner; // 0 white 1 black
       position current_pos;
 
       bool (ChessLogic::*can_move)(position old_pos, position new_pos);

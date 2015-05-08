@@ -55,27 +55,3 @@ int** ChessLogic::GetBoard() // return A COPY of the array
 }
 
 int ChessLogic::CheckResult(){return 0;} //0 still played 1 white wins 2 black wins 3 draw
-
-bool  ChessLogic::PawnCanMove(position old_pos, position new_pos)
-{
-    // Board boundries
-    if(new_pos.x > 7 || new_pos.x < 0 || new_pos.y > 7 || new_pos.y < 0)
-    {
-        return false;
-    }
-
-    // White move
-/*
-    if(game_pieces[board[old_pos.x][old_pos.y]].owner == OWNER_WHITE)
-    {
-
-    }
-    // Black move
-    if(game_pieces[board[old_pos.x][old_pos.y]].owner == OWNER_BLACK)
-    {
-
-    }
-*/
-    return true;
-
-}

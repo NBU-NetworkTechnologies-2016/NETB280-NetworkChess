@@ -37,7 +37,6 @@ public:
     int** GetBoard(); // return A COPY of the array
 
     int CheckResult(); //0 still played 1 white wins 2 black wins 3 draw
-    bool PawnCanMove(position old_pos, position new_pos);
 };
 
 #endif // CHESSLOGIC_H

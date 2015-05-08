@@ -106,7 +106,7 @@ bool ChessLogic::MovePiece(position old_pos, position new_pos)
 
     }
 
-    //this->current_turn =
+    this->current_turn = !this->current_turn;
 }
 
 int** ChessLogic::GetBoard() // return A COPY of the array

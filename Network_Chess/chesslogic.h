@@ -11,7 +11,8 @@ class ChessLogic
     } ;
 
 //TODO Add notion of win / loose
-//TODO Add the board pieces
+//TODO implement piece movement
+//TODO implement GetPossibleMoves
 private:
     int board[7][7];
 

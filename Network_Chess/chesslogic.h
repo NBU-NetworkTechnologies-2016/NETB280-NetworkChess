@@ -13,7 +13,7 @@ class ChessLogic
 //TODO Add notion of win / loose
 //TODO Add the board pieces
 private:
-    int board[8][8];
+    int board[7][7];
 
     const int WHITE_PAWN = 11;
     const int WHITE_KNIGHT1 = 12;

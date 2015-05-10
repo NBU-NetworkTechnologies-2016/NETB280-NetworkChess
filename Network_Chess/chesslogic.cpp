@@ -24,9 +24,8 @@ ChessLogic::ChessLogic(int skirmish)
     else
     {
         piece whitePawn;
-        //whitePawn.symbol = 1;
-        //whitePawn.owner = 0;
-        //whitePawn.can_move = &ChessLogic::PawnCanMove;
+        whitePawn.symbol = 1;
+
     }
 
 }
@@ -38,7 +37,7 @@ ChessLogic::ChessLogic(int skirmish)
 
 void ChessLogic::MovePiece(position old_pos, position new_pos)
 {
-    piece p = game_pieces[board[old_pos.x][old_pos.y]];
+    int piece_type = board[old_pos.x][old_pos.y];
 
     uint32_t powers_of_10[33] = {
         1000000000, 1000000000,
@@ -54,7 +53,6 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
     };
 
     int piece_owner;
-    int piece_type = p.type;
     int leading_zeros = clz(piece_type);
     piece_type /= powers_of_10[leading_zeros];
     if (piece_type >= 10)
@@ -66,67 +64,67 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
         //todo throw exception
     }
 
-    if(p.type == WHITE_PAWN)
+    if(piece_type == WHITE_PAWN)
     {
 
     }
-    else if(p.type == WHITE_KNIGHT1)
+    else if(piece_type == WHITE_KNIGHT1)
     {
 
     }
-    else if(p.type == WHITE_KNIGHT2)
+    else if(piece_type == WHITE_KNIGHT2)
     {
 
     }
-    else if(p.type == WHITE_ROOK)
+    else if(piece_type == WHITE_ROOK)
     {
 
     }
-    else if(p.type == WHITE_BISHOP_W)
+    else if(piece_type == WHITE_BISHOP_W)
     {
 
     }
-    else if(p.type == WHITE_BISHOP_B)
+    else if(piece_type == WHITE_BISHOP_B)
     {
 
     }
-    else if(p.type == WHITE_KING)
+    else if(piece_type == WHITE_KING)
     {
 
     }
-    else if(p.type == WHITE_QUEEN)
+    else if(piece_type == WHITE_QUEEN)
     {
 
     }
-    else if(p.type == BLACK_PAWN)
+    else if(piece_type == BLACK_PAWN)
     {
 
     }
-    else if(p.type == BLACK_KNIGHT1)
+    else if(piece_type == BLACK_KNIGHT1)
     {
 
     }
-    else if(p.type == BLACK_KNIGHT2)
+    else if(piece_type == BLACK_KNIGHT2)
     {
 
     }
-    else if(p.type == BLACK_ROOK)
+    else if(piece_type == BLACK_ROOK)
     {
 
     }
-    else if(p.type == BLACK_BISHOP_W)
+    else if(piece_type == BLACK_BISHOP_W)
     {
 
     }
-    else if(p.type == BLACK_BISHOP_B)
+    else if(piece_type == BLACK_BISHOP_B)
     {
 
     }
-    else if(p.type == BLACK_KING)
+    else if(piece_type == BLACK_KING)
     {
 
     }
-    else if(p.type == BLACK_QUEEN)
+    else if(piece_type == BLACK_QUEEN)
     {
 
     }

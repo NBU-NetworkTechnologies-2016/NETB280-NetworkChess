@@ -10,18 +10,10 @@ class ChessLogic
       int y;
     } ;
 
-
-    typedef struct piece{
-      int type;
-      position current_pos;
-      bool (ChessLogic::*can_move)(position old_pos, position new_pos);
-    } piece_t;
-
 //TODO Add notion of win / loose
 //TODO Add the board pieces
 private:
     int board[8][8];
-    piece game_pieces[100];
 
     const int WHITE_PAWN = 11;
     const int WHITE_KNIGHT1 = 12;

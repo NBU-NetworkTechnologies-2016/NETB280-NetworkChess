@@ -63,7 +63,7 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
        piece_owner = piece_type;
     if(current_turn != piece_type)
     {
-        return -1;
+        //todo throw exception
     }
 
     if(p.type == WHITE_PAWN)

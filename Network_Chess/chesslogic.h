@@ -14,7 +14,6 @@ class ChessLogic
     typedef struct piece{
       int type;
       position current_pos;
-
       bool (ChessLogic::*can_move)(position old_pos, position new_pos);
     } piece_t;
 
@@ -46,7 +45,10 @@ private:
     const int RESULT_BLACK_WINS = 2;
     const int RESULT_DRAW = 3;
 
-    bool current_turn;
+    const int CURRENT_TURN_WHITE = 1;
+    const int CURRENT_TURN_BLACK = 2;
+
+    int current_turn;
 public:
     ChessLogic(int skirmish, int current_turn); // Initialize the game board
     bool MovePiece(position old_pos, position new_pos);

@@ -4,9 +4,9 @@
 
 
 
-ChessLogic::ChessLogic(int skirmish, bool current_turn)
+ChessLogic::ChessLogic(int skirmish)
 {
-    this->current_turn = current_turn;
+    this->current_turn = CURRENT_TURN_WHITE;
     for(int i = 0; i < 8; i++)
     {
         for(int j = 0; j < 8; j++)
@@ -38,8 +38,33 @@ ChessLogic::ChessLogic(int skirmish, bool current_turn)
 
 bool ChessLogic::MovePiece(position old_pos, position new_pos)
 {
-    //return game_pieces[board[old_pos.x][old_pos.y]]->*can_move(old_pos, new_pos) ? true : false;
     piece p = game_pieces[board[old_pos.x][old_pos.y]];
+
+    uint32_t powers_of_10[33] = {
+        1000000000, 1000000000,
+        100000000, 100000000, 100000000,
+        10000000, 10000000, 10000000,
+        1000000, 1000000, 1000000, 1000000,
+        100000, 100000, 100000,
+        10000, 10000, 10000,
+        1000, 1000, 1000, 1000,
+        100, 100, 100,
+        10, 10, 10,
+        1, 1, 1, 1, 1
+    };
+
+    int piece_owner;
+    int piece_type = p.type;
+    int leading_zeros = clz(piece_type);
+    piece_type /= powers_of_10[leading_zeros];
+    if (piece_type >= 10)
+       piece_owner = 1;
+    else
+       piece_owner = piece_type;
+    if(current_turn != piece_type)
+    {
+        return -1;
+    }
 
     if(p.type == WHITE_PAWN)
     {
@@ -106,7 +131,13 @@ bool ChessLogic::MovePiece(position old_pos, position new_pos)
 
     }
 
-    this->current_turn = !this->current_turn;
+    if(this->current_turn == CURRENT_TURN_WHITE)
+    {
+        this->current_turn = CURRENT_TURN_BLACK;
+        return true;
+    }
+    this->current_turn = CURRENT_TURN_WHITE;
+    return true;
 }
 
 int** ChessLogic::GetBoard() // return A COPY of the array

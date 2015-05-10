@@ -23,9 +23,45 @@ ChessLogic::ChessLogic(int skirmish)
     // General Case, standard chess game
     else
     {
-        piece whitePawn;
-        whitePawn.symbol = 1;
 
+        // White pieces
+        board[1][0] = WHITE_PAWN;
+        board[1][1] = WHITE_PAWN;
+        board[1][2] = WHITE_PAWN;
+        board[1][3] = WHITE_PAWN;
+        board[1][4] = WHITE_PAWN;
+        board[1][5] = WHITE_PAWN;
+        board[1][6] = WHITE_PAWN;
+        board[1][7] = WHITE_PAWN;
+
+        board[0][0] = WHITE_ROOK;
+        board[0][7] = WHITE_ROOK;
+        board[0][1] = WHITE_KNIGHT1;
+        board[0][6] = WHITE_KNIGHT2;
+        board[0][2] = WHITE_BISHOP_W;
+        board[0][5] = WHITE_BISHOP_B;
+        board[0][4] = WHITE_QUEEN;
+        board[0][3] = WHITE_KING;
+
+        //Black pieces
+        board[6][0] = BLACK_PAWN;
+        board[6][1] = BLACK_PAWN;
+        board[6][2] = BLACK_PAWN;
+        board[6][3] = BLACK_PAWN;
+        board[6][4] = BLACK_PAWN;
+        board[6][5] = BLACK_PAWN;
+        board[6][6] = BLACK_PAWN;
+        board[6][7] = BLACK_PAWN;
+
+
+        board[7][0] = BLACK_ROOK;
+        board[7][7] = BLACK_ROOK;
+        board[7][1] = BLACK_KNIGHT1;
+        board[7][6] = BLACK_KNIGHT2;
+        board[7][2] = BLACK_BISHOP_W;
+        board[7][5] = BLACK_BISHOP_B;
+        board[7][4] = BLACK_QUEEN;
+        board[7][3] = BLACK_KING;
     }
 
 }

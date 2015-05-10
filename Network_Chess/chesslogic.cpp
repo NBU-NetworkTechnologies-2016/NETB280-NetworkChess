@@ -36,7 +36,7 @@ ChessLogic::ChessLogic(int skirmish)
  * if it can't move throws an exception
  */
 
-bool ChessLogic::MovePiece(position old_pos, position new_pos)
+void ChessLogic::MovePiece(position old_pos, position new_pos)
 {
     piece p = game_pieces[board[old_pos.x][old_pos.y]];
 
@@ -134,10 +134,8 @@ bool ChessLogic::MovePiece(position old_pos, position new_pos)
     if(this->current_turn == CURRENT_TURN_WHITE)
     {
         this->current_turn = CURRENT_TURN_BLACK;
-        return true;
     }
     this->current_turn = CURRENT_TURN_WHITE;
-    return true;
 }
 
 int** ChessLogic::GetBoard() // return A COPY of the array

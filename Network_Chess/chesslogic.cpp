@@ -100,6 +100,16 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
         //todo throw exception
     }
 
+    if(new_pos.x > 7 || new_pos.x < 0 || new_pos.y > 7 || new_pos.y < 0)
+    {
+        // throw exception for new position
+    }
+
+    if(old_pos.x > 7 || old_pos.x < 0 || old_pos.y > 7 || old_pos.y < 0)
+    {
+        // throw exception for new position
+    }
+
     if(piece_type == WHITE_PAWN)
     {
 

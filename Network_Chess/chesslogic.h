@@ -42,7 +42,7 @@ private:
 
     int current_turn;
 public:
-    ChessLogic(int skirmish, int current_turn); // Initialize the game board
+    ChessLogic(int skirmish); // Initialize the game board
     void MovePiece(position old_pos, position new_pos);
     int** GetBoard(); // return A COPY of the array
     int** GetPossibleMoves(position piece_position);

@@ -45,7 +45,7 @@ public:
     ChessLogic(int skirmish, int current_turn); // Initialize the game board
     void MovePiece(position old_pos, position new_pos);
     int** GetBoard(); // return A COPY of the array
-
+    int** ChessLogic::GetPossibleMoves();
     int CheckResult(); //0 still played 1 white wins 2 black wins 3 draw
 };
 

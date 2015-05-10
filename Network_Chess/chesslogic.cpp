@@ -190,4 +190,10 @@ int** ChessLogic::GetBoard() // return A COPY of the array
     return board_copy;
 }
 
+int** ChessLogic::GetPossibleMoves(position piece_position)
+{
+    int **board;
+    return board;
+}
+
 int ChessLogic::CheckResult(){return 0;} //0 still played 1 white wins 2 black wins 3 draw

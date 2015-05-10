@@ -75,26 +75,11 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
 {
     int piece_type = board[old_pos.x][old_pos.y];
 
-    uint32_t powers_of_10[33] = {
-        1000000000, 1000000000,
-        100000000, 100000000, 100000000,
-        10000000, 10000000, 10000000,
-        1000000, 1000000, 1000000, 1000000,
-        100000, 100000, 100000,
-        10000, 10000, 10000,
-        1000, 1000, 1000, 1000,
-        100, 100, 100,
-        10, 10, 10,
-        1, 1, 1, 1, 1
-    };
 
-    int piece_owner;
-    int leading_zeros = clz(piece_type);
-    piece_type /= powers_of_10[leading_zeros];
-    if (piece_type >= 10)
-       piece_owner = 1;
-    else
-       piece_owner = piece_type;
+    int piece_owner = piece_type;
+    while(piece_owner > 9)
+        piece_owner /= 10;
+
     if(current_turn != piece_type)
     {
         //todo throw exception

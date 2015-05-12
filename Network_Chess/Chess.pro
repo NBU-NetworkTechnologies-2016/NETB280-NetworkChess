@@ -25,3 +25,6 @@ HEADERS  += mainboard.h \
 
 FORMS    += mainboard.ui \
     menu.ui
+
+RESOURCES += \
+    resource.qrc

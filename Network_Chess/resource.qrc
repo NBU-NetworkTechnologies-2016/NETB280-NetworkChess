@@ -1,0 +1,17 @@
+<RCC>
+    <qresource>
+        <file>wPawn</file>
+        <file>wQueen</file>
+        <file>wBishop</file>
+        <file>wHorse</file>
+        <file>wRook</file>
+        <file>wKing</file>
+
+        <file>bPawn</file>
+        <file>bQueen</file>
+        <file>bBishop</file>
+        <file>bHorse</file>
+        <file>bRook</file>
+        <file>bKing</file>
+    </qresource>
+</RCC>

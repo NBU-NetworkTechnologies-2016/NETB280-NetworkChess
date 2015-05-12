@@ -7,8 +7,14 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //MainBoard w;
-    //w.show();
+    MainBoard w;
+    w.initializeBoard(); //initializing the QLabel & QPushButton objects
+    w.initializeFigures();//initializing QIcons (figures)
+    w.createBoard(); //creating the board and the QpushButtons on top of the board
+    w.createFigures();
+    w.disableButtons();//disabling unsued buttons at newgame
+    w.show();
+    /*other menus, new game options etc...
     ChessLogic cl(1);
     int** arr = cl.GetBoard();
     for(int i = 0; i < 8; i++)
@@ -19,6 +25,6 @@ int main(int argc, char *argv[])
         }
     }
     Menu m;
-    m.show();
+    m.show();*/
     return a.exec();
 }

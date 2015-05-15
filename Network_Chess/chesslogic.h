@@ -16,30 +16,30 @@ class ChessLogic
 private:
     int board[7][7];
 
-    const int WHITE_PAWN = 11;
-    const int WHITE_KNIGHT1 = 12;
-    const int WHITE_KNIGHT2 = 13;
-    const int WHITE_ROOK    = 14;
-    const int WHITE_BISHOP_W = 15;
-    const int WHITE_BISHOP_B = 16;
-    const int WHITE_KING = 17;
-    const int WHITE_QUEEN = 18;
+    const int WHITE_PAWN;
+    const int WHITE_KNIGHT1;
+    const int WHITE_KNIGHT2;
+    const int WHITE_ROOK;
+    const int WHITE_BISHOP_W;
+    const int WHITE_BISHOP_B;
+    const int WHITE_KING;
+    const int WHITE_QUEEN;
 
-    const int BLACK_PAWN = 21;
-    const int BLACK_KNIGHT1 = 22;
-    const int BLACK_KNIGHT2 = 23;
-    const int BLACK_ROOK    = 24;
-    const int BLACK_BISHOP_W = 25;
-    const int BLACK_BISHOP_B = 26;
-    const int BLACK_KING = 27;
-    const int BLACK_QUEEN = 28;
+    const int BLACK_PAWN;
+    const int BLACK_KNIGHT1;
+    const int BLACK_KNIGHT2;
+    const int BLACK_ROOK;
+    const int BLACK_BISHOP_W;
+    const int BLACK_BISHOP_B;
+    const int BLACK_KING;
+    const int BLACK_QUEEN;
 
-    const int RESULT_WHITE_WINS = 1;
-    const int RESULT_BLACK_WINS = 2;
-    const int RESULT_DRAW = 3;
+    const int RESULT_WHITE_WINS;
+    const int RESULT_BLACK_WINS;
+    const int RESULT_DRAW;
 
-    const int CURRENT_TURN_WHITE = 1;
-    const int CURRENT_TURN_BLACK = 2;
+    const int CURRENT_TURN_WHITE;
+    const int CURRENT_TURN_BLACK;
 
     int current_turn;
 public:

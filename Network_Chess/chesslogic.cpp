@@ -6,6 +6,31 @@
 
 ChessLogic::ChessLogic(int skirmish)
 {
+    this->WHITE_PAWN = 11;
+    this->WHITE_KNIGHT1 = 12;
+    this->WHITE_KNIGHT2 = 13;
+    this->WHITE_ROOK    = 14;
+    this->WHITE_BISHOP_W = 15;
+    this->WHITE_BISHOP_B = 16;
+    this->WHITE_KING = 17;
+    this->WHITE_QUEEN = 18;
+
+    this->BLACK_PAWN = 21;
+    this->BLACK_KNIGHT1 = 22;
+    this->BLACK_KNIGHT2 = 23;
+    this->BLACK_ROOK    = 24;
+    this->BLACK_BISHOP_W = 25;
+    this->BLACK_BISHOP_B = 26;
+    this->BLACK_KING = 27;
+    this->BLACK_QUEEN = 28;
+
+    this->RESULT_WHITE_WINS = 1;
+    this->RESULT_BLACK_WINS = 2;
+    this->RESULT_DRAW = 3;
+
+    this->CURRENT_TURN_WHITE = 1;
+    this->CURRENT_TURN_BLACK = 2;
+
     this->current_turn = CURRENT_TURN_WHITE;
     for(int i = 0; i < 8; i++)
     {

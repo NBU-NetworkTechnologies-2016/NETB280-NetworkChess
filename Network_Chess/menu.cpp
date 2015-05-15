@@ -16,6 +16,11 @@ Menu::~Menu()
     delete ui;
 }
 
+void Menu::on_pushButton_released()
+{
+
+}
+
 void Menu::on_pushButton_clicked()
 {
     w.show();

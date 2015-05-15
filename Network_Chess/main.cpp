@@ -8,11 +8,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainBoard w;
-    w.initializeBoard(); //initializing the QLabel & QPushButton objects
-    w.initializeFigures();//initializing QIcons (figures)
-    w.createBoard(); //creating the board and the QpushButtons on top of the board
-    w.createFigures();
+
+    qDebug() << "Boom!";
     w.disableButtons();//disabling unsued buttons at newgame
+    w.RefreshBoard();
     w.show();
     /*other menus, new game options etc...
     ChessLogic cl(1);

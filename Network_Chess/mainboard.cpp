@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include <QIcon>
 #include <QSize>
+#include "chesslogic.h";
+#include "QDebug";
 
 MainBoard::MainBoard(QWidget *parent) :
     QMainWindow(parent),
@@ -15,10 +17,39 @@ MainBoard::MainBoard(QWidget *parent) :
     this->setFixedSize(1920, 1080);
     this->setStyleSheet("background-color: #F0E8E8;");
 
+    //TODO this must not be hardcoded when we have more than 1 skirmishes
+    cl = new ChessLogic(-1);
+
      //tester to see position of QPushButtons
    //positions[0][2]->setStyleSheet("background-color: red;");
   // positions[2][1]->setEnabled(false);
+/*
+    this->WHITE_PAWN = 11;
+    this->WHITE_KNIGHT1 = 12;
+    this->WHITE_KNIGHT2 = 13;
+    this->WHITE_ROOK    = 14;
+    this->WHITE_BISHOP_W = 15;
+    this->WHITE_BISHOP_B = 16;
+    this->WHITE_KING = 17;
+    this->WHITE_QUEEN = 18;
 
+    this->BLACK_PAWN = 21;
+    this->BLACK_KNIGHT1 = 22;
+    this->BLACK_KNIGHT2 = 23;
+    this->BLACK_ROOK    = 24;
+    this->BLACK_BISHOP_W = 25;
+    this->BLACK_BISHOP_B = 26;
+    this->BLACK_KING = 27;
+    this->BLACK_QUEEN = 28;
+*/
+    //Initialize Figures
+    size.setHeight(60);
+    size.setWidth(60);
+
+    initializeBoard(); //initializing the QLabel & QPushButton objects
+    initializeFigures();//initializing QIcons (figures)
+    createBoard(); //creating the board and the QpushButtons on top of the board
+    createFigures();
 
 }
 
@@ -37,17 +68,18 @@ void MainBoard::disableButtons()
 //initialize each QIcon (each figure) and setting the size of all figures
 void MainBoard::initializeFigures()
 {
-    size.setHeight(60);
-    size.setWidth(60);
-    for(int i = 0; i < NUMBER_OF_FIGURES; i++)
+
+          for(int i = 0; i < NUMBER_OF_FIGURES; i++)
     {
         whiteFigures[i] = new QIcon(whiteFigureNames[i]);//{"wPawn", "wBishop", "wHorse", "wRook", "wQueen", "wKing"};
         blackFigures[i] = new QIcon(blackFigureNames[i]);//{"bPawn", "bBishop", "bHorse", "bRook", "bQueen", "bKing"};
     }
+
 }
 //initializing each QLabel and QPushButton
 void MainBoard::initializeBoard()
 {
+
     for(int i = 0; i < BOARD_COLS; i++)
     {
 
@@ -60,12 +92,14 @@ void MainBoard::initializeBoard()
             positions[i][j] = new QPushButton(this);
         }
     }
+
 }
 
 
 //creating chess board and buttons for the figures
 void MainBoard::createBoard()
 {
+
     for(int i = 0; i < BOARD_COLS; i++)
     {
         square_letter_label[i]->setText(letter_label[i]);
@@ -103,6 +137,7 @@ void MainBoard::createBoard()
             }
         }
     }
+
 }
 
 
@@ -164,19 +199,39 @@ void MainBoard::createKings()
 //creating all figures(calling the upc reated functions)
 void MainBoard::createFigures()
 {
+
     createPawns();
     createBishops();
     createHorses();
     createRooks();
     createQueens();
     createKings();
+
 }
 
+void MainBoard::RefreshBoard()
+{
 
+    int** currentBoard = cl->GetBoard();
 
+    for(int i = 0; i < BOARD_COLS; i++)
+    {
+        for(int j = 0; j < BOARD_ROWS - 1; j++)
+        {
+            *figures[currentBoard[i][j]];
+            //positions[i][j]->setIcon(*figures[currentBoard[i][j]]);
+            //positions[i][j]->setIcon(*whiteFigures[0]);//white pawns
+            //positions[i][j - 5]->setIcon(*blackFigures[0]);//black pawns
+            qDebug() << currentBoard[i][j];
+        }
+        qDebug() << "\n";
+    }
+
+}
 
 
 MainBoard::~MainBoard()
 {
     delete ui;
+    delete cl;
 }

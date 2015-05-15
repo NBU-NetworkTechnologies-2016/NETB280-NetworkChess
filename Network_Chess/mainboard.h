@@ -43,17 +43,17 @@ private:
 
     const static int NUMBER_OF_FIGURES = 6;
 
-    const static int squares_size = 100;
-    const static int squares_label_width = 12;
-    const static int squares_label_height = 20;
+     const static int squares_size = 100;
+     const static int squares_label_width = 12;
+     const static int squares_label_height = 20;
 
-    const  int x_axis[8] = {480, 580, 680, 780, 880, 980, 1080, 1180}; //pushing columns from left to right, starting at 480 pixels
-    const  int y_axis[8] = {50, 150, 250, 350, 450, 550, 650, 750}; //pushing rows from top to bottom, starting at 50 pixels
+     int x_axis[8] = {480, 580, 680, 780, 880, 980, 1080, 1180}; //pushing columns from left to right, starting at 480 pixels
+     int y_axis[8] = {50, 150, 250, 350, 450, 550, 650, 750}; //pushing rows from top to bottom, starting at 50 pixels
 
-    const  QString numb_label[8] ={"8", "7", "6", "5", "4", "3", "2", "1"};
-    const  QString letter_label[8] = {"A", "B", "C", "D", "E", "F", "G", "H"};
-    const QString whiteFigureNames[NUMBER_OF_FIGURES] = {"wPawn", "wBishop", "wHorse", "wRook", "wQueen", "wKing"};
-    const QString blackFigureNames[NUMBER_OF_FIGURES] = {"bPawn", "bBishop", "bHorse", "bRook", "bQueen", "bKing"};
+     QString numb_label[8] ={"8", "7", "6", "5", "4", "3", "2", "1"};
+     QString letter_label[8] = {"A", "B", "C", "D", "E", "F", "G", "H"};
+     QString whiteFigureNames[NUMBER_OF_FIGURES] = {":/wPawn", ":/wBishop", ":/wHorse", ":/wRook", ":/wQueen", ":/wKing"};
+     QString blackFigureNames[NUMBER_OF_FIGURES] = {":/bPawn", ":/bBishop", ":/bHorse", ":/bRook", ":/bQueen", ":/bKing"};
 
     QLabel* Sqares[BOARD_COLS][BOARD_ROWS];
     QLabel* square_numb_label[8];

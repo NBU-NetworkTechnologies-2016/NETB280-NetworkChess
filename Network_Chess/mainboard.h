@@ -21,13 +21,6 @@ class MainBoard : public QMainWindow
 public:
     explicit MainBoard(QWidget *parent = 0);
 
-    void createPawns();
-    void createBishops();
-    void createHorses();
-    void createRooks();
-    void createQueens();
-    void createKings();
-
     void RefreshBoard();
     void createFigures();
 

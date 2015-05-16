@@ -11,10 +11,9 @@ class ChessLogic
     } ;
 
 //TODO Add notion of win / loose
-//TODO implement piece movement
-//TODO implement GetPossibleMoves
 private:
-    int board[7][7];
+    int board[8][8];
+
 
      int WHITE_PAWN;
      int WHITE_KNIGHT1;
@@ -40,6 +39,7 @@ private:
 
      int CURRENT_TURN_WHITE;
      int CURRENT_TURN_BLACK;
+
 
     int current_turn;
 public:

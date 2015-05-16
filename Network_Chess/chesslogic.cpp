@@ -1,4 +1,5 @@
 #include "chesslogic.h"
+#include <QDebug>
 
 //SETTINGS AND MAPPINGS
 
@@ -6,32 +7,9 @@
 
 ChessLogic::ChessLogic(int skirmish)
 {
-    this->WHITE_PAWN = 11;
-    this->WHITE_KNIGHT1 = 12;
-    this->WHITE_KNIGHT2 = 13;
-    this->WHITE_ROOK    = 14;
-    this->WHITE_BISHOP_W = 15;
-    this->WHITE_BISHOP_B = 16;
-    this->WHITE_KING = 17;
-    this->WHITE_QUEEN = 18;
 
-    this->BLACK_PAWN = 21;
-    this->BLACK_KNIGHT1 = 22;
-    this->BLACK_KNIGHT2 = 23;
-    this->BLACK_ROOK    = 24;
-    this->BLACK_BISHOP_W = 25;
-    this->BLACK_BISHOP_B = 26;
-    this->BLACK_KING = 27;
-    this->BLACK_QUEEN = 28;
 
-    this->RESULT_WHITE_WINS = 1;
-    this->RESULT_BLACK_WINS = 2;
-    this->RESULT_DRAW = 3;
-
-    this->CURRENT_TURN_WHITE = 1;
-    this->CURRENT_TURN_BLACK = 2;
-
-    this->current_turn = CURRENT_TURN_WHITE;
+    //this->current_turn = CURRENT_TURN_WHITE;
     for(int i = 0; i < 8; i++)
     {
         for(int j = 0; j < 8; j++)
@@ -39,54 +17,82 @@ ChessLogic::ChessLogic(int skirmish)
             board[i][j] = 0;
         }
     }
+/*
+     WHITE_PAWN = 11;
+     WHITE_KNIGHT1 = 12;
+     WHITE_KNIGHT2 = 13;
+     WHITE_ROOK  = 14;
+     WHITE_BISHOP_W = 15;
+     WHITE_BISHOP_B = 16;
+     WHITE_KING = 17;
+     WHITE_QUEEN = 18;
 
+     BLACK_PAWN = 21;
+     BLACK_KNIGHT1 = 22;
+     BLACK_KNIGHT2 = 23;
+     BLACK_ROOK   = 24;
+     BLACK_BISHOP_W = 25;
+     BLACK_BISHOP_B = 26;
+     BLACK_KING = 27;
+     BLACK_QUEEN = 28;
+
+     RESULT_WHITE_WINS = 1;
+     RESULT_BLACK_WINS = 2;
+     RESULT_DRAW = 3;
+
+     CURRENT_TURN_WHITE = 1;
+     CURRENT_TURN_BLACK = 2;
+*/
     //init the skirmish (every skirmish has his own pieces)
-    if(skirmish == 0)
+    if(skirmish == 5353534)
     {
 
     }
     // General Case, standard chess game
     else
     {
+        //COLUMN, ROW
 
         // White pieces
-        board[1][0] = WHITE_PAWN;
-        board[1][1] = WHITE_PAWN;
-        board[1][2] = WHITE_PAWN;
-        board[1][3] = WHITE_PAWN;
-        board[1][4] = WHITE_PAWN;
-        board[1][5] = WHITE_PAWN;
-        board[1][6] = WHITE_PAWN;
-        board[1][7] = WHITE_PAWN;
-
-        board[0][0] = WHITE_ROOK;
-        board[0][7] = WHITE_ROOK;
-        board[0][1] = WHITE_KNIGHT1;
-        board[0][6] = WHITE_KNIGHT2;
-        board[0][2] = WHITE_BISHOP_W;
-        board[0][5] = WHITE_BISHOP_B;
-        board[0][4] = WHITE_QUEEN;
-        board[0][3] = WHITE_KING;
-
-        //Black pieces
-        board[6][0] = BLACK_PAWN;
-        board[6][1] = BLACK_PAWN;
-        board[6][2] = BLACK_PAWN;
-        board[6][3] = BLACK_PAWN;
-        board[6][4] = BLACK_PAWN;
-        board[6][5] = BLACK_PAWN;
-        board[6][6] = BLACK_PAWN;
-        board[6][7] = BLACK_PAWN;
 
 
-        board[7][0] = BLACK_ROOK;
-        board[7][7] = BLACK_ROOK;
-        board[7][1] = BLACK_KNIGHT1;
-        board[7][6] = BLACK_KNIGHT2;
-        board[7][2] = BLACK_BISHOP_W;
-        board[7][5] = BLACK_BISHOP_B;
-        board[7][4] = BLACK_QUEEN;
-        board[7][3] = BLACK_KING;
+        board[1][1] = 11;
+        board[2][1] = 11;
+        board[3][1] = 11;
+        board[4][1] = 11;
+        board[5][1] = 11;
+        board[6][1] = 11;
+        board[7][1] = 11;
+        board[0][1] = 11;
+
+        board[1][0] = 12;
+        board[2][0] = 15;
+        board[3][0] = 17;
+        board[4][0] = 18;
+        board[5][0] = 15;
+        board[6][0] = 12;
+        board[7][0] = 14;
+        board[0][0] = 14;
+
+        board[3][6] = 21;
+        board[0][6] = 21;
+        board[7][6] = 21;
+        board[1][6] = 21;
+        board[6][6] = 21;
+        board[2][6] = 21;
+        board[5][6] = 21;
+        board[4][6] = 21;
+
+        board[1][7] = 22;
+        board[2][7] = 25;
+        board[3][7] = 27;
+        board[4][7] = 28;
+        board[5][7] = 25;
+        board[6][7] = 22;
+        board[7][7] = 24;
+        board[0][7] = 24;
+
+
     }
 
 }
@@ -119,8 +125,8 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
     {
         // throw exception for new position
     }
-
-    if(piece_type == WHITE_PAWN)
+    //White Pawn
+    if(piece_type == 11)
     {
 
     }
@@ -152,7 +158,8 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
     {
 
     }
-    else if(piece_type == BLACK_PAWN)
+    //black pawn
+    else if(piece_type == 21)
     {
 
     }
@@ -203,6 +210,7 @@ int** ChessLogic::GetBoard() // return A COPY of the array
         board_copy[i] = new int[8];
         for(int j = 0; j < 8; j++)
         {
+            qDebug() << board[i][j];
             board_copy[i][j] = board[i][j];
         }
     }

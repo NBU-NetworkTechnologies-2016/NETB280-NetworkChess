@@ -20,36 +20,41 @@ MainBoard::MainBoard(QWidget *parent) :
     //TODO this must not be hardcoded when we have more than 1 skirmishes
     cl = new ChessLogic(-1);
 
-     //tester to see position of QPushButtons
-   //positions[0][2]->setStyleSheet("background-color: red;");
-  // positions[2][1]->setEnabled(false);
-/*
-    this->WHITE_PAWN = 11;
-    this->WHITE_KNIGHT1 = 12;
-    this->WHITE_KNIGHT2 = 13;
-    this->WHITE_ROOK    = 14;
-    this->WHITE_BISHOP_W = 15;
-    this->WHITE_BISHOP_B = 16;
-    this->WHITE_KING = 17;
-    this->WHITE_QUEEN = 18;
+    QString whiteFigureNames[NUMBER_OF_FIGURES] = {":/wPawn", ":/wBishop", ":/wHorse", ":/wRook", ":/wQueen", ":/wKing"};
+    QString blackFigureNames[NUMBER_OF_FIGURES] = {":/bPawn", ":/bBishop", ":/bHorse", ":/bRook", ":/bQueen", ":/bKing"};
+    for(int i = 0; i < 50; i++)
+    {
+        figures[i] = new QIcon(":/bKing");
+    }
 
-    this->BLACK_PAWN = 21;
-    this->BLACK_KNIGHT1 = 22;
-    this->BLACK_KNIGHT2 = 23;
-    this->BLACK_ROOK    = 24;
-    this->BLACK_BISHOP_W = 25;
-    this->BLACK_BISHOP_B = 26;
-    this->BLACK_KING = 27;
-    this->BLACK_QUEEN = 28;
-*/
+
+    figures[11] = new QIcon(whiteFigureNames[0]);
+    figures[12] = new QIcon(whiteFigureNames[2]);
+    figures[13] = new QIcon(whiteFigureNames[2]);
+    figures[14] = new QIcon(whiteFigureNames[3]);
+    figures[15] = new QIcon(whiteFigureNames[1]);
+    figures[15] = new QIcon(whiteFigureNames[1]);
+    figures[17] = new QIcon(whiteFigureNames[5]);
+    figures[18] = new QIcon(whiteFigureNames[4]);
+
+    figures[21] = new QIcon(blackFigureNames[0]);
+    figures[22] = new QIcon(blackFigureNames[2]);
+    figures[23] = new QIcon(blackFigureNames[2]);
+    figures[24] = new QIcon(blackFigureNames[3]);
+    figures[25] = new QIcon(blackFigureNames[1]);
+    figures[25] = new QIcon(blackFigureNames[1]);
+    figures[27] = new QIcon(blackFigureNames[5]);
+    figures[28] =new QIcon( blackFigureNames[4]);
     //Initialize Figures
     size.setHeight(60);
     size.setWidth(60);
 
+
+
     initializeBoard(); //initializing the QLabel & QPushButton objects
     initializeFigures();//initializing QIcons (figures)
     createBoard(); //creating the board and the QpushButtons on top of the board
-    createFigures();
+    RefreshBoard();
 
 }
 
@@ -140,91 +145,22 @@ void MainBoard::createBoard()
 
 }
 
-
-//Functions that are creating all different figures
-//creating PAWNS
-void MainBoard::createPawns()
-{
-    for(int i = 0; i < BOARD_COLS; i++)
-    {
-        for(int j = 6; j < BOARD_ROWS - 1; j++)
-        {
-            positions[i][j]->setIcon(*whiteFigures[0]);//white pawns
-            positions[i][j - 5]->setIcon(*blackFigures[0]);//black pawns
-        }
-    }
-}
-//creating BISHOPS
-void MainBoard::createBishops()
-{
-    for(int i = 2; i <= 5; i = i + 3)
-    {
-        positions[i][7]->setIcon(*whiteFigures[1]);//creating white bishops
-        positions[i][0]->setIcon(*blackFigures[1]);//creatinh black bishops
-    }
-}
-
-//creating HORSES
-void MainBoard::createHorses()
-{
-    for(int i = 1; i <=7; i = i +5)
-    {
-        positions[i][7]->setIcon(*whiteFigures[2]);//creating white horses
-        positions[i][0]->setIcon(*blackFigures[2]);//creating black horses
-    }
-}
-//creating ROOKS
-void MainBoard::createRooks()
-{
-    for(int i = 0; i <=7; i = i + 7)
-    {
-        positions[i][7]->setIcon(*whiteFigures[3]);
-        positions[i][0]->setIcon(*blackFigures[3]);
-    }
-}
-//creating QUEENS
-void MainBoard::createQueens()
-{
-    positions[3][7]->setIcon(*whiteFigures[4]);
-    positions[3][0]->setIcon(*blackFigures[4]);
-}
-
-void MainBoard::createKings()
-{
-    positions[4][7]->setIcon(*whiteFigures[5]);
-    positions[4][0]->setIcon(*blackFigures[5]);
-}
-
-
-//creating all figures(calling the upc reated functions)
-void MainBoard::createFigures()
-{
-
-    createPawns();
-    createBishops();
-    createHorses();
-    createRooks();
-    createQueens();
-    createKings();
-
-}
-
 void MainBoard::RefreshBoard()
 {
 
     int** currentBoard = cl->GetBoard();
 
-    for(int i = 0; i < BOARD_COLS; i++)
+    for(int i = 0; i < 8; i++)
     {
-        for(int j = 0; j < BOARD_ROWS - 1; j++)
+        for(int j = 0; j < 8; j++)
         {
-            *figures[currentBoard[i][j]];
-            //positions[i][j]->setIcon(*figures[currentBoard[i][j]]);
-            //positions[i][j]->setIcon(*whiteFigures[0]);//white pawns
-            //positions[i][j - 5]->setIcon(*blackFigures[0]);//black pawns
-            qDebug() << currentBoard[i][j];
+            //*figures[currentBoard[i][j]];
+            if(currentBoard[i][j] > 0)
+            {
+                positions[i][j]->setIcon(*figures[currentBoard[i][j]]);
+            }
+            qDebug() << i << "  " << j << "  " <<currentBoard[i][j];
         }
-        qDebug() << "\n";
     }
 
 }

@@ -17,7 +17,10 @@ ChessLogic::ChessLogic(int skirmish)
             board[i][j] = 0;
         }
     }
-/*
+
+    current_turn = 1;
+
+    /*
      WHITE_PAWN = 11;
      WHITE_KNIGHT1 = 12;
      WHITE_KNIGHT2 = 13;
@@ -99,7 +102,7 @@ ChessLogic::ChessLogic(int skirmish)
  * if it can't move throws an exception
  */
 
-void ChessLogic::MovePiece(position old_pos, position new_pos)
+bool ChessLogic::MovePiece(position old_pos, position new_pos)
 {
     int piece_type = board[old_pos.x][old_pos.y];
 
@@ -191,11 +194,19 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
 
     }
 
+    //Simplicity is beautiful
     if(this->current_turn == CURRENT_TURN_WHITE)
     {
         this->current_turn = CURRENT_TURN_BLACK;
     }
-    this->current_turn = CURRENT_TURN_WHITE;
+    else
+    {
+        this->current_turn = CURRENT_TURN_WHITE;
+    }
+
+    board[old_pos.x][old_pos.y]  = 0;
+    board[new_pos.x][new_pos.y] = piece_type;
+    return true;
 }
 
 int** ChessLogic::GetBoard() // return A COPY of the array

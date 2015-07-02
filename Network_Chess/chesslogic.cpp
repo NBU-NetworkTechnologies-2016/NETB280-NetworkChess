@@ -66,7 +66,7 @@ ChessLogic::ChessLogic(int skirmish)
         board[7][1] = 11;
         board[0][1] = 11;
 
-        board[1][0] = 12;
+        board[1][0] = 13;
         board[2][0] = 15;
         board[3][0] = 17;
         board[4][0] = 18;
@@ -85,7 +85,7 @@ ChessLogic::ChessLogic(int skirmish)
         board[5][6] = 21;
         board[4][6] = 21;
 
-        board[1][7] = 22;
+        board[1][7] = 23;
         board[2][7] = 25;
         board[3][7] = 27;
         board[4][7] = 28;
@@ -117,41 +117,50 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         piece_owner /= 10;
 
 
-    if(current_turn != piece_type)
+    if(current_turn != piece_owner)
     {
-        //todo throw exception
+        qDebug() << "Current turn is: " << current_turn  << "Not this player's turn!" << endl;
+        return false;
     }
-/*
-    if(new_pos.x > 7 || new_pos.x < 0 || new_pos.y > 7 || new_pos.y < 0)
+    if(new_x > 7 || new_x < 0 || new_y > 7 || new_y < 0)
     {
-        // throw exception for new position
+        return false;
     }
 
-    if(old_pos.x > 7 || old_pos.x < 0 || old_pos.y > 7 || old_pos.y < 0)
+    if(old_x > 7 || old_x < 0 || old_y > 7 || old_y < 0)
     {
-        // throw exception for new position
+        return false;
     }
     //White Pawn
     if(piece_type == 11)
     {
-        if(new_pos.x == old_pos.x -1)
+        if(!((new_y == old_y +1) // standard move
+           || (new_y == old_y +2) // first possible move
+           || (new_y == old_y +1 && new_x == old_x + 1) // take piece left
+           || (new_y == old_y +1 && new_x == old_x - 1))) // take piece right
         {
+            return false;
         }
     }
-    else if(piece_type == WHITE_KNIGHT1)
+    else if(piece_type == 13 || piece_type == 23)
     {
+/*        if(!(
+            ()
+            ()
+            ()
+            ()
+            ()
+            ()
+            ()
+            ()
+            ))
+        {
 
+        }*/
     }
-    else if(piece_type == WHITE_KNIGHT2)
-    {
-
-    }
+/*
     //White rook
     else if(piece_type == 12)
-    {
-
-    }
-    else if(piece_type == WHITE_BISHOP_W)
     {
 
     }
@@ -163,37 +172,8 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     {
 
     }
-    else if(piece_type == WHITE_QUEEN)
-    {
-
-    }
     //black pawn
     else if(piece_type == 21)
-    {
-
-    }
-    else if(piece_type == BLACK_KNIGHT1)
-    {
-
-    }
-    else if(piece_type == BLACK_KNIGHT2)
-    {
-
-    }
-    //Black rook
-    else if(piece_type == 22)
-    {
-
-    }
-    else if(piece_type == BLACK_BISHOP_W)
-    {
-
-    }
-    else if(piece_type == BLACK_BISHOP_B)
-    {
-
-    }
-    else if(piece_type == BLACK_KING)
     {
 
     }
@@ -203,13 +183,13 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     }
 */
     //Simplicity is beautiful
-    if(this->current_turn == CURRENT_TURN_WHITE)
+    if(this->current_turn == 1)
     {
-        this->current_turn = CURRENT_TURN_BLACK;
+        this->current_turn = 2;
     }
     else
     {
-        this->current_turn = CURRENT_TURN_WHITE;
+        this->current_turn = 1;
     }
 
     board[old_x][old_y]  = 0;
@@ -228,7 +208,7 @@ int** ChessLogic::GetBoard() // return A COPY of the array
         board_copy[i] = new int[8];
         for(int j = 0; j < 8; j++)
         {
-            qDebug() << board[i][j];
+            //qDebug() << board[i][j];
             board_copy[i][j] = board[i][j];
         }
     }

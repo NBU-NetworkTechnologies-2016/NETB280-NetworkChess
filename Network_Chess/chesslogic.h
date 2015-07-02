@@ -42,6 +42,7 @@ private:
 
 
     int current_turn;
+    bool IsPathEmpty(int old_x, int old_y, int new_x, int new_y); 
 public:
     ChessLogic(int skirmish); // Initialize the game board
     bool MovePiece(int old_x, int old_y, int new_x, int new_y);

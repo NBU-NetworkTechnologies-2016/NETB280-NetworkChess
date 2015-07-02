@@ -131,21 +131,21 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         }*/
     }
     //White rook
-    else if(piece_type == 12 || piece_type = 22)
+    else if(piece_type == 12 || piece_type == 22)
     {
        if(!(
             (old_x < new_x && old_y == new_y) // move right 
-            (old_x > new_x && old_y == new_y) // move left
-            (old_x == new_x && old_y < new_y) // move down
-            (old_x == new_x && old_y > new_y) // move up
+            || (old_x > new_x && old_y == new_y) // move left
+            || (old_x == new_x && old_y < new_y) // move down
+            || (old_x == new_x && old_y > new_y) // move up
            ))
        {
            return false;
        }
-       else if()
-       {
+       //else if()
+       //{
         // todo check if there are pieces in the way
-       }
+       //}
     }
     //bishop
     else if(piece_type == 15 || piece_type == 25)
@@ -171,7 +171,7 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 
     }
     //queens
-    else if(piece_type == 18 || piece_type = 28)
+    else if(piece_type == 18 || piece_type == 28)
     {
 
     }
@@ -236,3 +236,36 @@ void ChessLogic::PrintGameBoard()
     }
 }
 
+bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
+{
+    while(old_x != new_x && old_y != new_y)
+    {
+        if(old_x != new_x)
+        {
+            if(old_x < new_x)
+            {
+                old_x++;
+            }
+            else
+            {
+                old_x--;
+            }
+        }
+         if(old_y != new_y)
+        {
+            if(old_y < new_y)
+            {
+                old_y++;
+            }
+            else
+            {
+                old_y--;
+            }
+        }
+        if(board[old_x][old_y] != 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}

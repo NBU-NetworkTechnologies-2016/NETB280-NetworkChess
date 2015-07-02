@@ -17,32 +17,6 @@ ChessLogic::ChessLogic(int skirmish)
 
     current_turn = 1;
 
-    /*
-     WHITE_PAWN = 11;
-     WHITE_KNIGHT1 = 12;
-     WHITE_KNIGHT2 = 13;
-     WHITE_ROOK  = 14;
-     WHITE_BISHOP_W = 15;
-     WHITE_BISHOP_B = 16;
-     WHITE_KING = 17;
-     WHITE_QUEEN = 18;
-
-     BLACK_PAWN = 21;
-     BLACK_KNIGHT1 = 22;
-     BLACK_KNIGHT2 = 23;
-     BLACK_ROOK   = 24;
-     BLACK_BISHOP_W = 25;
-     BLACK_BISHOP_B = 26;
-     BLACK_KING = 27;
-     BLACK_QUEEN = 28;
-
-     RESULT_WHITE_WINS = 1;
-     RESULT_BLACK_WINS = 2;
-     RESULT_DRAW = 3;
-
-     CURRENT_TURN_WHITE = 1;
-     CURRENT_TURN_BLACK = 2;
-*/
     //init the skirmish (every skirmish has his own pieces)
     if(skirmish == 5353534)
     {
@@ -139,6 +113,7 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
             return false;
         }
     }
+    // knights
     else if(piece_type == 13 || piece_type == 23)
     {
 /*        if(!(
@@ -172,11 +147,13 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         // todo check if there are pieces in the way
        }
     }
-    else if(piece_type == WHITE_BISHOP_B)
+    //bishop
+    else if(piece_type == 15 || piece_type == 25)
     {
 
     }
-    else if(piece_type == WHITE_KING)
+    // kings
+    else if(piece_type == 17 || piece_type == 27)
     {
 
     }
@@ -193,7 +170,8 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 
 
     }
-    else if(piece_type == BLACK_QUEEN)
+    //queens
+    else if(piece_type == 18 || piece_type = 28)
     {
 
     }

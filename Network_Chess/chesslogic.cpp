@@ -102,20 +102,26 @@ ChessLogic::ChessLogic(int skirmish)
  * if it can't move throws an exception
  */
 
-bool ChessLogic::MovePiece(position old_pos, position new_pos)
+bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 {
-    int piece_type = board[old_pos.x][old_pos.y];
+    int piece_type = board[old_x][old_y];
 
+    qDebug() << "old_pos.x: "  << old_x;
+    qDebug() << "old_pos.y: "  << old_y;
+    qDebug() << "new_pos.x: "  << new_x;
+    qDebug() << "new_pos.y: "  << new_y;
+    qDebug() << "piece: " << piece_type;
 
     int piece_owner = piece_type;
     while(piece_owner > 9)
         piece_owner /= 10;
 
+
     if(current_turn != piece_type)
     {
         //todo throw exception
     }
-
+/*
     if(new_pos.x > 7 || new_pos.x < 0 || new_pos.y > 7 || new_pos.y < 0)
     {
         // throw exception for new position
@@ -128,7 +134,9 @@ bool ChessLogic::MovePiece(position old_pos, position new_pos)
     //White Pawn
     if(piece_type == 11)
     {
-
+        if(new_pos.x == old_pos.x -1)
+        {
+        }
     }
     else if(piece_type == WHITE_KNIGHT1)
     {
@@ -193,7 +201,7 @@ bool ChessLogic::MovePiece(position old_pos, position new_pos)
     {
 
     }
-
+*/
     //Simplicity is beautiful
     if(this->current_turn == CURRENT_TURN_WHITE)
     {
@@ -204,8 +212,8 @@ bool ChessLogic::MovePiece(position old_pos, position new_pos)
         this->current_turn = CURRENT_TURN_WHITE;
     }
 
-    board[old_pos.x][old_pos.y]  = 0;
-    board[new_pos.x][new_pos.y] = piece_type;
+    board[old_x][old_y]  = 0;
+    board[new_x][new_y] = piece_type;
     return true;
 }
 
@@ -235,3 +243,23 @@ int** ChessLogic::GetPossibleMoves(position piece_position)
 }
 
 int ChessLogic::CheckResult(){return 0;} //0 still played 1 white wins 2 black wins 3 draw
+
+/*
+ * This function is made for internal debug use
+ */
+void ChessLogic::PrintGameBoard()
+{
+    int** arr = this->GetBoard();
+    for(int i = 0; i < 8; i++)
+    {
+        QString row;
+        for(int j = 0; j < 8; j++)
+        {
+            //qDebug() << arr[i][j];
+            row += QString::number(arr[j][i]);
+            row += "-";
+        }
+        qDebug() << row;
+    }
+}
+

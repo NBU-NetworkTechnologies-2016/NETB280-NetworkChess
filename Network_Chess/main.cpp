@@ -15,14 +15,9 @@ int main(int argc, char *argv[])
     //w.show();
     /*other menus, new game options etc...*/
     ChessLogic cl(1);
-    int** arr = cl.GetBoard();
-    for(int i = 0; i < 8; i++)
-    {
-        for(int j = 0; j < 8; j++)
-        {
-            qDebug() << arr[i][j];
-        }
-    }
+    cl.PrintGameBoard();
+    cl.MovePiece(1,1,1,6);
+    cl.PrintGameBoard();
     //Menu m;
     //m.show();*/
     return a.exec();

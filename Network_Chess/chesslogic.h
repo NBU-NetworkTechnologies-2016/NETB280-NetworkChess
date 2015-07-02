@@ -44,10 +44,11 @@ private:
     int current_turn;
 public:
     ChessLogic(int skirmish); // Initialize the game board
-    bool MovePiece(position old_pos, position new_pos);
+    bool MovePiece(int old_x, int old_y, int new_x, int new_y);
     int** GetBoard(); // return A COPY of the array
     int** GetPossibleMoves(position piece_position);
     int CheckResult(); //0 still played 1 white wins 2 black wins 3 draw
+    void PrintGameBoard();
 };
 
 #endif // CHESSLOGIC_H

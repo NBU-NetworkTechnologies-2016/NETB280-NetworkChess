@@ -54,8 +54,6 @@ ChessLogic::ChessLogic(int skirmish)
         //COLUMN, ROW
 
         // White pieces
-
-
         board[1][1] = 11;
         board[2][1] = 11;
         board[3][1] = 11;
@@ -70,10 +68,11 @@ ChessLogic::ChessLogic(int skirmish)
         board[3][0] = 17;
         board[4][0] = 18;
         board[5][0] = 15;
-        board[6][0] = 12;
+        board[6][0] = 13;
         board[7][0] = 14;
         board[0][0] = 14;
 
+        // Black pieces
         board[3][6] = 21;
         board[0][6] = 21;
         board[7][6] = 21;
@@ -88,11 +87,9 @@ ChessLogic::ChessLogic(int skirmish)
         board[3][7] = 27;
         board[4][7] = 28;
         board[5][7] = 25;
-        board[6][7] = 22;
+        board[6][7] = 23;
         board[7][7] = 24;
         board[0][7] = 24;
-
-
     }
 
 }
@@ -138,7 +135,8 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
     {
 
     }
-    else if(piece_type == WHITE_ROOK)
+    //White rook
+    else if(piece_type == 12)
     {
 
     }
@@ -171,7 +169,8 @@ void ChessLogic::MovePiece(position old_pos, position new_pos)
     {
 
     }
-    else if(piece_type == BLACK_ROOK)
+    //Black rook
+    else if(piece_type == 22)
     {
 
     }

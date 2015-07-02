@@ -1,9 +1,6 @@
 #include "chesslogic.h"
 #include <QDebug>
 
-//SETTINGS AND MAPPINGS
-
-
 
 ChessLogic::ChessLogic(int skirmish)
 {
@@ -158,11 +155,22 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 
         }*/
     }
-/*
     //White rook
-    else if(piece_type == 12)
+    else if(piece_type == 12 || piece_type = 22)
     {
-
+       if(!(
+            (old_x < new_x && old_y == new_y) // move right 
+            (old_x > new_x && old_y == new_y) // move left
+            (old_x == new_x && old_y < new_y) // move down
+            (old_x == new_x && old_y > new_y) // move up
+           ))
+       {
+           return false;
+       }
+       else if()
+       {
+        // todo check if there are pieces in the way
+       }
     }
     else if(piece_type == WHITE_BISHOP_B)
     {
@@ -175,13 +183,20 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     //black pawn
     else if(piece_type == 21)
     {
+        if(!((new_y == old_y -1) // standard move
+           || (new_y == old_y -2) // first possible move
+           || (new_y == old_y -1 && new_x == old_x + 1) // take piece left
+           || (new_y == old_y -1 && new_x == old_x - 1))) // take piece right
+        {
+            return false;
+        }
+
 
     }
     else if(piece_type == BLACK_QUEEN)
     {
 
     }
-*/
     //Simplicity is beautiful
     if(this->current_turn == 1)
     {

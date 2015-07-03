@@ -1,6 +1,6 @@
 #include "chesslogic.h"
 #include <QDebug>
-
+#include <cmath>
 
 ChessLogic::ChessLogic(int skirmish)
 {
@@ -147,15 +147,16 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
        {
            return false;
        }
-       //else if()
-       //{
-        // todo check if there are pieces in the way
-       //}
     }
     //bishop
     else if(piece_type == 15 || piece_type == 25)
     {
-
+        if(!(
+                abs(old_x - new_x) == abs(old_y - new_y)
+          ))
+        {
+            return false;
+        }
     }
     // kings
     else if(piece_type == 17 || piece_type == 27)

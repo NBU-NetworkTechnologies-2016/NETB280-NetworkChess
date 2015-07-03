@@ -160,8 +160,11 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     // kings
     else if(piece_type == 17 || piece_type == 27)
     {
-        if(!())
-        {
+        if(!( (old_x == new_x+1 && old_y == new_y) // move right
+              || (old_x == new_x-1 && old_y == new_y) // move left
+              || (old_x == new_x && old_y == new_y +1) // move down
+              || (old_x == new_x && old_y == new_y -1) // move up
+        )){
             return false;
         }
     }

@@ -160,7 +160,10 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     // kings
     else if(piece_type == 17 || piece_type == 27)
     {
-
+        if(!())
+        {
+            return false;
+        }
     }
     //black pawn
     else if(piece_type == 21)
@@ -178,9 +181,20 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     //queens
     else if(piece_type == 18 || piece_type == 28)
     {
-
+        //empty since queens can move everywhere
     }
-    //Simplicity is beautiful
+
+    // Check if you are not killing your own piece
+    int taken_type =  board[new_x][new_y];
+    while(taken_type > 9)
+        taken_type /= 10;
+
+    if(taken_type == this->current_turn)
+    {
+        return false;
+    }
+
+    //Change the current player turn
     if(this->current_turn == 1)
     {
         this->current_turn = 2;

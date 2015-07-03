@@ -42,7 +42,7 @@ private:
 
 
     int current_turn;
-    bool IsPathEmpty(int old_x, int old_y, int new_x, int new_y); 
+
 public:
     ChessLogic(int skirmish); // Initialize the game board
     bool MovePiece(int old_x, int old_y, int new_x, int new_y);
@@ -50,6 +50,7 @@ public:
     int** GetPossibleMoves(position piece_position);
     int CheckResult(); //0 still played 1 white wins 2 black wins 3 draw
     void PrintGameBoard();
+    bool IsPathEmpty(int old_x, int old_y, int new_x, int new_y);
 };
 
 #endif // CHESSLOGIC_H

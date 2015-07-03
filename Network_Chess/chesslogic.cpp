@@ -93,6 +93,11 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         qDebug() << "Current turn is: " << current_turn  << "Not this player's turn!" << endl;
         return false;
     }
+
+    if(piece_type != 13 && piece_type != 23)
+    {
+        IsPathEmpty( old_x,  old_y,  new_x,  new_y);
+    }
     if(new_x > 7 || new_x < 0 || new_y > 7 || new_y < 0)
     {
         return false;
@@ -238,10 +243,12 @@ void ChessLogic::PrintGameBoard()
 
 bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
 {
-    while(old_x != new_x && old_y != new_y)
+    qDebug() << "Entering IsPathEmpty old_x: " << old_x << " old y: " << old_y << " new_x: " << new_x << " new_y: " << new_y;
+    while(old_x != new_x || old_y != new_y)
     {
         if(old_x != new_x)
         {
+            qDebug() << "X is different!";
             if(old_x < new_x)
             {
                 old_x++;
@@ -250,9 +257,11 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
             {
                 old_x--;
             }
+            qDebug() << "New x is: " << old_x;
         }
          if(old_y != new_y)
         {
+             qDebug() << "Y is different";
             if(old_y < new_y)
             {
                 old_y++;
@@ -261,11 +270,15 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
             {
                 old_y--;
             }
+            qDebug() << "New y is: " << old_y;
         }
         if(board[old_x][old_y] != 0)
         {
+            qDebug() << "There is NO path!";
             return false;
         }
+        qDebug() << "We are at: " << old_x << " " << old_y << "and value is: " << board[old_x][old_y];
     }
+    qDebug() << "There is a path!";
     return true;
 }

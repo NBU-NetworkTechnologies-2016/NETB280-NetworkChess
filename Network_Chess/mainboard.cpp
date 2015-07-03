@@ -20,10 +20,10 @@ MainBoard::MainBoard(QWidget *parent) :
     //TODO this must not be hardcoded when we have more than 1 skirmishes
     cl = new ChessLogic(-1);
 
-    //QString whiteFigureNames[NUMBER_OF_FIGURES] = {":/wPawn", ":/wBishop", ":/wHorse", ":/wRook", ":/wQueen", ":/wKing"};
-    //QString blackFigureNames[NUMBER_OF_FIGURES] = {":/bPawn", ":/bBishop", ":/bHorse", ":/bRook", ":/bQueen", ":/bKing"};
-    QString whiteFigureNames[NUMBER_OF_FIGURES] = {"D:\\Programming\\Qt\\Network_Chess\\wPawn.jpg", "D:\\Programming\\Qt\\Network_Chess\\wBishop.jpg", "D:\\Programming\\Qt\\Network_Chess\\wHorse.jpg", "D:\\Programming\\Qt\\Network_Chess\\wRook.jpg", "D:\\Programming\\Qt\\Network_Chess\\wQueen.jpg", "D:\\Programming\\Qt\\Network_Chess\\wKing.jpg"};
-    QString blackFigureNames[NUMBER_OF_FIGURES] = {"D:\\Programming\\Qt\\Network_Chess\\bPawn.jpg", "D:\\Programming\\Qt\\Network_Chess\\bBishop.jpg", "D:\\Programming\\Qt\\Network_Chess\\bHorse.jpg", "D:\\Programming\\Qt\\Network_Chess\\bRook.jpg", "D:\\Programming\\Qt\\Network_Chess\\bQueen.jpg", "D:\\Programming\\Qt\\Network_Chess\\bKing.jpg"};
+    QString whiteFigureNames[NUMBER_OF_FIGURES] = {":/wPawn", ":/wBishop", ":/wHorse", ":/wRook", ":/wQueen", ":/wKing"};
+    QString blackFigureNames[NUMBER_OF_FIGURES] = {":/bPawn", ":/bBishop", ":/bHorse", ":/bRook", ":/bQueen", ":/bKing"};
+    //QString whiteFigureNames[NUMBER_OF_FIGURES] = {"D:\\Programming\\Qt\\Network_Chess\\wPawn.jpg", "D:\\Programming\\Qt\\Network_Chess\\wBishop.jpg", "D:\\Programming\\Qt\\Network_Chess\\wHorse.jpg", "D:\\Programming\\Qt\\Network_Chess\\wRook.jpg", "D:\\Programming\\Qt\\Network_Chess\\wQueen.jpg", "D:\\Programming\\Qt\\Network_Chess\\wKing.jpg"};
+    //QString blackFigureNames[NUMBER_OF_FIGURES] = {"D:\\Programming\\Qt\\Network_Chess\\bPawn.jpg", "D:\\Programming\\Qt\\Network_Chess\\bBishop.jpg", "D:\\Programming\\Qt\\Network_Chess\\bHorse.jpg", "D:\\Programming\\Qt\\Network_Chess\\bRook.jpg", "D:\\Programming\\Qt\\Network_Chess\\bQueen.jpg", "D:\\Programming\\Qt\\Network_Chess\\bKing.jpg"};
 
     //for(int i = 0; i < 50; i++)
     //{

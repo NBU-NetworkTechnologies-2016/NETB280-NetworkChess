@@ -70,6 +70,7 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 {
     int piece_type = board[old_x][old_y];
 
+    //TODO init in constructor
     WhitePawn wp;
     Piece *a = &wp;
     pieces[11] = a;

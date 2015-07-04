@@ -95,33 +95,47 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     pieces[15] = bk;
     pieces[25] = bk;
 
+    Queen q = q;
+    Piece* qq = &q;
+    pieces[18] = q;
+    pieces[28] = q;
+
     qDebug() << "old_pos.x: "  << old_x;
     qDebug() << "old_pos.y: "  << old_y;
     qDebug() << "new_pos.x: "  << new_x;
     qDebug() << "new_pos.y: "  << new_y;
     qDebug() << "piece: " << piece_type;
 
+    // Validate current player turn
     int piece_owner = piece_type;
     while(piece_owner > 9)
         piece_owner /= 10;
-
-
     if(current_turn != piece_owner)
     {
         qDebug() << "Current turn is: " << current_turn  << "Not this player's turn!" << endl;
         return false;
     }
 
-    if(new_x > 7 || new_x < 0 || new_y > 7 || new_y < 0)
+    // Check if you are not killing your own piece
+    int taken_type =  board[new_x][new_y];
+    while(taken_type > 9)
+        taken_type /= 10;
+    if(taken_type == this->current_turn)
     {
         return false;
     }
 
+    // Validate board boundries
+    if(new_x > 7 || new_x < 0 || new_y > 7 || new_y < 0)
+    {
+        return false;
+    }
     if(old_x > 7 || old_x < 0 || old_y > 7 || old_y < 0)
     {
         return false;
     }
 
+    // Validate that the piece exists
     if(!pieces.contains(piece_type))
     {
         return false;
@@ -167,23 +181,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     if(!is_move_possible)
     {
         qDebug() << "Move is not possible!";
-        return false;
-    }
-/*
-    //queens
-    else if(piece_type == 18 || piece_type == 28)
-    {
-        //empty since queens can move everywhere
-    }
-*/
-
-    // Check if you are not killing your own piece
-    int taken_type =  board[new_x][new_y];
-    while(taken_type > 9)
-        taken_type /= 10;
-
-    if(taken_type == this->current_turn)
-    {
         return false;
     }
 

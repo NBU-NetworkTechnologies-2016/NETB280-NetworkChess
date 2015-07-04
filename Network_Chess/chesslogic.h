@@ -12,6 +12,7 @@
 #include "rook.h"
 #include "piece.h"
 #include "bishop.h"
+#include "queen.h"
 
 class ChessLogic
 {

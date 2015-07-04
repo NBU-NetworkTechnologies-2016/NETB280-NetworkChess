@@ -58,6 +58,7 @@ public:
     int CheckResult(); //0 still played 1 white wins 2 black wins 3 draw
     void PrintGameBoard();
     bool IsPathEmpty(int old_x, int old_y, int new_x, int new_y);
+    QVector<Move> GetPossibleTurns(int x, int y);
 };
 
 #endif // CHESSLOGIC_H

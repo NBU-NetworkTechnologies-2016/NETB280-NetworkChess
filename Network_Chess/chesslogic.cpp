@@ -70,36 +70,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 {
     int piece_type = board[old_x][old_y];
 
-    //TODO init in constructor
-    WhitePawn wp;
-    Piece *a = &wp;
-    pieces[11] = a;
-    BlackPawn bp;
-    Piece *b = &bp;
-    pieces[21] = b;
-    King k;
-    Piece* kk = &k;
-    pieces[17] = kk;
-    pieces[27] = kk;
-    Knight kn;
-    Piece* kkn = &kn;
-    pieces[13] = kkn;
-    pieces[23] = kkn;
-    Rook rk;
-    Piece* rrk = &rk;
-    pieces[12] = rrk;
-    pieces[22] = rrk;
-
-    Bishop bb;
-    Piece* bk = &bb;
-    pieces[15] = bk;
-    pieces[25] = bk;
-
-    Queen q = q;
-    Piece* qq = &q;
-    pieces[18] = q;
-    pieces[28] = q;
-
     qDebug() << "old_pos.x: "  << old_x;
     qDebug() << "old_pos.y: "  << old_y;
     qDebug() << "new_pos.x: "  << new_x;
@@ -136,13 +106,9 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     }
 
     // Validate that the piece exists
-    if(!pieces.contains(piece_type))
-    {
-        return false;
-    }
 
     bool is_move_possible = false;
-    QVector<Move> moves = pieces[piece_type]->getPossibleMoves(old_x, old_y);
+    QVector<Move> moves = GetPossibleTurns(old_x, old_y);
     qDebug() << "Possible moves are: " << moves.length();
     for(int i = 0; i < moves.length(); i++)
     {
@@ -284,4 +250,44 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
     }
     qDebug() << "There is a path!";
     return true;
+}
+
+QVector<Move> ChessLogic::GetPossibleTurns(int x, int y)
+{
+    WhitePawn wp;
+    Piece *a = &wp;
+    pieces[11] = a;
+    BlackPawn bp;
+    Piece *b = &bp;
+    pieces[21] = b;
+    King k;
+    Piece* kk = &k;
+    pieces[17] = kk;
+    pieces[27] = kk;
+    Knight kn;
+    Piece* kkn = &kn;
+    pieces[13] = kkn;
+    pieces[23] = kkn;
+    Rook rk;
+    Piece* rrk = &rk;
+    pieces[12] = rrk;
+    pieces[22] = rrk;
+
+    Bishop bb;
+    Piece* bk = &bb;
+    pieces[15] = bk;
+    pieces[25] = bk;
+
+    Queen q = q;
+    Piece* qq = &q;
+    pieces[18] = qq;
+    pieces[28] = qq;
+    int piece_type = board[x][y];
+    qDebug() << "get_possible_turns piece type: " << piece_type;
+    if(!pieces.contains(piece_type))
+    {
+        QVector<Move> a;
+        return a;
+    }
+    return pieces[piece_type]->getPossibleMoves(x, y);
 }

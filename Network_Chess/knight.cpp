@@ -10,7 +10,7 @@ Knight::~Knight()
 
 QVector<Move > Knight::getPossibleMoves(int x, int y)
 {
-    qDebug() << "King getPossibleMoves!!!!";
+    qDebug() << "Knight getPossibleMoves!!!!";
     QVector<Move> a;
     a.push_back(Move(x+1, y+2, false, false, true));
     a.push_back(Move(x-1, y+2, false, false, true));

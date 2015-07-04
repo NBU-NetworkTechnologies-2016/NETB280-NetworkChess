@@ -10,6 +10,8 @@
 #include "king.h"
 #include "knight.h"
 #include "rook.h"
+#include "piece.h"
+#include "bishop.h"
 
 class ChessLogic
 {

@@ -56,8 +56,8 @@ ChessLogic::ChessLogic()
     board[7][7] = 24;
     board[0][7] = 24;
 
-    board[4][4] = 12;
-    board[6][4] = 22;
+    board[4][4] = 15;
+    board[6][4] = 25;
     //Initialize the pieces in the map;
 }
 
@@ -89,6 +89,11 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     Piece* rrk = &rk;
     pieces[12] = rrk;
     pieces[22] = rrk;
+
+    Bishop bb;
+    Piece* bk = &bb;
+    pieces[15] = bk;
+    pieces[25] = bk;
 
     qDebug() << "old_pos.x: "  << old_x;
     qDebug() << "old_pos.y: "  << old_y;
@@ -165,16 +170,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         return false;
     }
 /*
-    //bishop
-    else if(piece_type == 15 || piece_type == 25)
-    {
-        if(!(
-                abs(old_x - new_x) == abs(old_y - new_y)
-          ))
-        {
-            return false;
-        }
-    }
     //queens
     else if(piece_type == 18 || piece_type == 28)
     {

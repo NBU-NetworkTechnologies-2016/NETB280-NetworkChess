@@ -56,8 +56,8 @@ ChessLogic::ChessLogic()
     board[7][7] = 24;
     board[0][7] = 24;
 
-    board[4][4] = 17;
-    board[6][4] = 27;
+    board[4][4] = 12;
+    board[6][4] = 22;
     //Initialize the pieces in the map;
 }
 
@@ -85,6 +85,10 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     Piece* kkn = &kn;
     pieces[13] = kkn;
     pieces[23] = kkn;
+    Rook rk;
+    Piece* rrk = &rk;
+    pieces[12] = rrk;
+    pieces[22] = rrk;
 
     qDebug() << "old_pos.x: "  << old_x;
     qDebug() << "old_pos.y: "  << old_y;
@@ -161,19 +165,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         return false;
     }
 /*
-    //White rook
-    else if(piece_type == 12 || piece_type == 22)
-    {
-       if(!(
-            (old_x < new_x && old_y == new_y) // move right 
-            || (old_x > new_x && old_y == new_y) // move left
-            || (old_x == new_x && old_y < new_y) // move down
-            || (old_x == new_x && old_y > new_y) // move up
-           ))
-       {
-           return false;
-       }
-    }
     //bishop
     else if(piece_type == 15 || piece_type == 25)
     {
@@ -287,6 +278,10 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
                 old_y--;
             }
             //qDebug() << "New y is: " << old_y;
+        }
+        if(old_x == new_x || old_y == new_y)
+        {
+            break;
         }
         if(board[old_x][old_y] != 0)
         {

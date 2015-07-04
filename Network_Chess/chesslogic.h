@@ -9,6 +9,7 @@
 #include "blackpawn.h"
 #include "king.h"
 #include "knight.h"
+#include "rook.h"
 
 class ChessLogic
 {

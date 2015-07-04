@@ -59,12 +59,6 @@ ChessLogic::ChessLogic()
     board[4][4] = 17;
     board[6][4] = 27;
     //Initialize the pieces in the map;
-    qDebug() << "bbbbb";
-    //WhitePawn wp;
-    //Piece *a = &wp;
-   // pieces[11] = a;
-   // pieces[11]->getPossibleMoves(1,1);
-    qDebug() << "aaaaaaaaaaaaaaaaaaaaaaaaaaAAAA";
 }
 
 /*
@@ -86,6 +80,10 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     Piece* kk = &k;
     pieces[17] = kk;
     pieces[27] = kk;
+    Knight kn;
+    Piece* kkn = &kn;
+    pieces[13] = kkn;
+    pieces[23] = kkn;
 
     qDebug() << "old_pos.x: "  << old_x;
     qDebug() << "old_pos.y: "  << old_y;
@@ -163,25 +161,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         return false;
     }
 /*
-    // knights
-    else if(piece_type == 13 || piece_type == 23)
-    {
-/*
-        if(!(
-            ()
-            ||()
-            ||()
-            ||()
-            ||()
-            ||()
-            ||()
-            ||()
-            ))
-
-        {
-
-        }
-    }
     //White rook
     else if(piece_type == 12 || piece_type == 22)
     {
@@ -202,17 +181,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
                 abs(old_x - new_x) == abs(old_y - new_y)
           ))
         {
-            return false;
-        }
-    }
-    // kings
-    else if(piece_type == 17 || piece_type == 27)
-    {
-        if(!( (old_x == new_x+1 && old_y == new_y) // move right
-              || (old_x == new_x-1 && old_y == new_y) // move left
-              || (old_x == new_x && old_y == new_y +1) // move down
-              || (old_x == new_x && old_y == new_y -1) // move up
-        )){
             return false;
         }
     }

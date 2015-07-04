@@ -102,8 +102,7 @@ void MainBoard::movingPieces()
 
     if(onMove)
     {
-        QIcon *emptyIcon = new QIcon();
-        positions[7][7]->setIcon(*emptyIcon);
+        
         qDebug() << "onMove-true";
         positions[oldGlobalButtonCoordinateX][oldGlobalButtonCoordinateY]->setIcon(QIcon());
         positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(currentPieceIcon);

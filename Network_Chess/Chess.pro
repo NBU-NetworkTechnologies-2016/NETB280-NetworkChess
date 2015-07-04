@@ -16,12 +16,28 @@ SOURCES += main.cpp\
         mainboard.cpp \
     menu.cpp \
     chesslogic.cpp \
-    piece.cpp
+    piece.cpp \
+    whitepawn.cpp \
+    move.cpp \
+    blackpawn.cpp \
+    king.cpp \
+    knight.cpp \
+    rook.cpp \
+    bishop.cpp \
+    queen.cpp
 
 HEADERS  += mainboard.h \
     menu.h \
     chesslogic.h \
-    piece.h
+    piece.h \
+    whitepawn.h \
+    move.h \
+    blackpawn.h \
+    king.h \
+    knight.h \
+    rook.h \
+    bishop.h \
+    queen.h
 
 FORMS    += mainboard.ui \
     menu.ui

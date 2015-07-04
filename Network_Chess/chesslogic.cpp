@@ -17,7 +17,7 @@ ChessLogic::ChessLogic()
     }
 
     current_turn = 1;
-
+    game_status = 0;// 0 active 1 white wins 2 black wins
     // White pieces
     board[1][1] = 11;
     board[2][1] = 11;
@@ -161,6 +161,14 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     }
 
     board[old_x][old_y]  = 0;
+    if(board[new_x][new_y] == 27)
+    {
+        game_state = 1;
+    }
+    else if(board[new_x][new_y] == 17)
+    {
+        game_state = 2;
+    }
     board[new_x][new_y] = piece_type;
     return true;
 }
@@ -184,8 +192,11 @@ int** ChessLogic::GetBoard() // return A COPY of the array
     return board_copy;
 }
 
-
-int ChessLogic::CheckResult(){return 0;} //0 still played 1 white wins 2 black wins 3 draw
+//0 still played 1 white wins 2 black wins 3 draw
+int ChessLogic::CheckResult()
+{
+    return game_status;
+}
 
 /*
  * This function is made for internal debug use

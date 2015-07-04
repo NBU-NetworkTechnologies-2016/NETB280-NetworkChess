@@ -49,7 +49,7 @@ private:
 
 
     int current_turn;
-
+    int game_status;
     QMap<int, Piece*> pieces;
 public:
     ChessLogic(); // Initialize the game board

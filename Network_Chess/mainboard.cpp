@@ -87,24 +87,19 @@ MainBoard::MainBoard(QWidget *parent) :
 
 void MainBoard::movingPieces()
 {
+
     if(onMove)
     {
+        QIcon *emptyIcon = new QIcon();
+        positions[7][7]->setIcon(*emptyIcon);
         qDebug() << "onMove-true";
-
-        positions[0][5]->setIcon(currentPieceIcon);
-        qDebug() << "sled slagane na nova ikona";
+        positions[oldGlobalButtonCoordinateX][oldGlobalButtonCoordinateY]->setIcon(QIcon());
+        positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(currentPieceIcon);
 
 
     }
-   // positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(QIcon());
 }
 
-void MainBoard::pieceSignals()
-{
-    //connect(positions[globalButtonCoordinateX][globalButtonCoordinateY], SIGNAL(clicked()), this, SLOT(movePieceStart(int)));
-    connect(positions[0][5], SIGNAL(clicked()), this, SLOT(movingPieces()));
-
-}
 void MainBoard::movePieceStart(int i)
 {
 
@@ -140,6 +135,8 @@ void MainBoard::movePieceStart(int i)
     {
         onMove = true;
         currentPieceIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
+        oldGlobalButtonCoordinateX = globalButtonCoordinateX;
+        oldGlobalButtonCoordinateY = globalButtonCoordinateY;
     }
 
 }

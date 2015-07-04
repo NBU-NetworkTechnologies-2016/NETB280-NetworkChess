@@ -17,7 +17,7 @@ ChessLogic::ChessLogic()
     }
 
     current_turn = 1;
-    game_status = 0;// 0 active 1 white wins 2 black wins
+    game_state = 0;// 0 active 1 white wins 2 black wins
     // White pieces
     board[1][1] = 11;
     board[2][1] = 11;
@@ -195,7 +195,7 @@ int** ChessLogic::GetBoard() // return A COPY of the array
 //0 still played 1 white wins 2 black wins 3 draw
 int ChessLogic::CheckResult()
 {
-    return game_status;
+    return game_state;
 }
 
 /*

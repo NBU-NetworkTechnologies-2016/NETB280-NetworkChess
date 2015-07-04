@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include <QIcon>
 #include <QSize>
+#include <QObject>
+#include <QSignalMapper>
 #include "chesslogic.h";
 #include "QDebug";
 
@@ -18,17 +20,14 @@ MainBoard::MainBoard(QWidget *parent) :
     this->setStyleSheet("background-color: #F0E8E8;");
 
     //TODO this must not be hardcoded when we have more than 1 skirmishes
-    cl = new ChessLogic(-1);
+    cl = new ChessLogic();
 
     QString whiteFigureNames[NUMBER_OF_FIGURES] = {":/wPawn", ":/wBishop", ":/wHorse", ":/wRook", ":/wQueen", ":/wKing"};
     QString blackFigureNames[NUMBER_OF_FIGURES] = {":/bPawn", ":/bBishop", ":/bHorse", ":/bRook", ":/bQueen", ":/bKing"};
-    //QString whiteFigureNames[NUMBER_OF_FIGURES] = {"D:\\Programming\\Qt\\Network_Chess\\wPawn.jpg", "D:\\Programming\\Qt\\Network_Chess\\wBishop.jpg", "D:\\Programming\\Qt\\Network_Chess\\wHorse.jpg", "D:\\Programming\\Qt\\Network_Chess\\wRook.jpg", "D:\\Programming\\Qt\\Network_Chess\\wQueen.jpg", "D:\\Programming\\Qt\\Network_Chess\\wKing.jpg"};
-    //QString blackFigureNames[NUMBER_OF_FIGURES] = {"D:\\Programming\\Qt\\Network_Chess\\bPawn.jpg", "D:\\Programming\\Qt\\Network_Chess\\bBishop.jpg", "D:\\Programming\\Qt\\Network_Chess\\bHorse.jpg", "D:\\Programming\\Qt\\Network_Chess\\bRook.jpg", "D:\\Programming\\Qt\\Network_Chess\\bQueen.jpg", "D:\\Programming\\Qt\\Network_Chess\\bKing.jpg"};
-
-    //for(int i = 0; i < 50; i++)
-    //{
-      //  figures[i] = new QIcon(":/bKing");
-    //}
+    for(int i = 0; i < 50; i++)
+    {
+        figures[i] = new QIcon(":/bKing");
+    }
 
 
     figures[11] = new QIcon(whiteFigureNames[0]);
@@ -54,10 +53,94 @@ MainBoard::MainBoard(QWidget *parent) :
 
 
 
+
     initializeBoard(); //initializing the QLabel & QPushButton objects
     initializeFigures();//initializing QIcons (figures)
     createBoard(); //creating the board and the QpushButtons on top of the board
     RefreshBoard();
+    //positions[5][5]->setStyleSheet("background-color: red");
+    mapper = new QSignalMapper(this);
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(movePieceStart(int)));
+    int holder[8][8];
+
+
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            holder[0][j] = 100 + j;
+            if(i > 0)
+            {
+                holder[i][j] = (i * 10) + j;
+            }
+
+            mapper->setMapping(positions[i][j], holder[i][j]);
+            connect(positions[i][j], SIGNAL(clicked()), mapper, SLOT(map()));
+
+        }
+
+    }
+
+    pieceSignals();
+
+}
+
+void MainBoard::movingPieces()
+{
+    if(onMove)
+    {
+        qDebug() << "onMove-true";
+
+        positions[0][5]->setIcon(currentPieceIcon);
+        qDebug() << "sled slagane na nova ikona";
+
+
+    }
+   // positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(QIcon());
+}
+
+void MainBoard::pieceSignals()
+{
+    //connect(positions[globalButtonCoordinateX][globalButtonCoordinateY], SIGNAL(clicked()), this, SLOT(movePieceStart(int)));
+    connect(positions[0][5], SIGNAL(clicked()), this, SLOT(movingPieces()));
+
+}
+void MainBoard::movePieceStart(int i)
+{
+
+    mappedButtons = i;//from value to index
+
+    qDebug() << "mappedButtons: " << mappedButtons;
+    int firstColumn = 100;//first column mapping
+    int currentX = 0;//all other columns mapping
+    for(int z = 10; z <=80; z+=10)
+    {
+        currentX++;
+        for(int j = 0; j <= 7; j++)
+        {
+            if(mappedButtons >= firstColumn)
+            {
+                globalButtonCoordinateX = 0;
+                globalButtonCoordinateY = j;
+                firstColumn++;
+            }
+            if(mappedButtons >=z && mappedButtons <= z + 10 - 3)
+            {
+                globalButtonCoordinateX = currentX;
+                globalButtonCoordinateY = j;
+                z++;
+            }
+         }
+    }
+    qDebug() << "X: " << globalButtonCoordinateX;
+    qDebug() << "Y: " << globalButtonCoordinateY;
+
+    QIcon currentIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
+    if((currentIcon.isNull()) == false)
+    {
+        onMove = true;
+        currentPieceIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
+    }
 
 }
 
@@ -77,7 +160,7 @@ void MainBoard::disableButtons()
 void MainBoard::initializeFigures()
 {
 
-          for(int i = 0; i < NUMBER_OF_FIGURES; i++)
+    for(int i = 0; i < NUMBER_OF_FIGURES; i++)
     {
         whiteFigures[i] = new QIcon(whiteFigureNames[i]);//{"wPawn", "wBishop", "wHorse", "wRook", "wQueen", "wKing"};
         blackFigures[i] = new QIcon(blackFigureNames[i]);//{"bPawn", "bBishop", "bHorse", "bRook", "bQueen", "bKing"};
@@ -162,7 +245,7 @@ void MainBoard::RefreshBoard()
             {
                 positions[i][j]->setIcon(*figures[currentBoard[i][j]]);
             }
-            qDebug() << i << "  " << j << "  " <<currentBoard[i][j];
+            qDebug() << i << "  " << j << "  " << currentBoard[i][j];
         }
     }
 

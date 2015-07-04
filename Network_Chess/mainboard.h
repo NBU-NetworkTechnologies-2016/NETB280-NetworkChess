@@ -7,6 +7,8 @@
 #include <QPushButton>
 #include <QIcon>
 #include <QSize>
+#include <QObject>
+#include <QSignalMapper>
 
 #include "chesslogic.h";
 
@@ -21,17 +23,36 @@ class MainBoard : public QMainWindow
 public:
     explicit MainBoard(QWidget *parent = 0);
 
+    //sasho test
+    bool onMove = false;
+    QIcon currentPieceIcon;
+    int globalButtonCoordinateX;//the container for the current pressed button coordinates X axis
+    int globalButtonCoordinateY;//analogy
+    int mappedButtons;//mapped values, index of a pushed button
+    //end sasho test
+
     void RefreshBoard();
     void createFigures();
 
     void disableButtons();
+    void pieceSignals();
     ~MainBoard();
 
+private slots:
+    //sasho test
+    void movePieceStart(int);
+    void movingPieces();
+    //end sasho test
 private:
+    //sasho test
+    QSignalMapper *mapper;
+
+    //sasho end
     void initializeBoard();
     void createBoard();
 
     void initializeFigures();
+
     Ui::MainBoard *ui;
     const static int BOARD_ROWS = 8;
     const static int BOARD_COLS = 8;

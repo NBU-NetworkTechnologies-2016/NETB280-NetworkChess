@@ -102,14 +102,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         return false;
     }
 
-    if(piece_type != 13 && piece_type != 23)
-    {
-        bool empty_path = IsPathEmpty( old_x,  old_y,  new_x,  new_y);
-        if(!empty_path)
-        {
-            return false;
-        }
-    }
     if(new_x > 7 || new_x < 0 || new_y > 7 || new_y < 0)
     {
         return false;
@@ -151,6 +143,13 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
                 {
                     qDebug() << " Doesn't contain enemey";
                     is_move_possible = true;
+                }
+            }
+            if(moves[i].can_fly)
+            {
+                if(!IsPathEmpty( old_x,  old_y,  new_x,  new_y))
+                {
+                    return false;
                 }
             }
         }

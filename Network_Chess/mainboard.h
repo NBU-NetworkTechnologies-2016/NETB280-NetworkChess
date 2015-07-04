@@ -28,6 +28,8 @@ public:
     QIcon currentPieceIcon;
     int globalButtonCoordinateX;//the container for the current pressed button coordinates X axis
     int globalButtonCoordinateY;//analogy
+    int oldGlobalButtonCoordinateX;
+    int oldGlobalButtonCoordinateY;
     int mappedButtons;//mapped values, index of a pushed button
     //end sasho test
 

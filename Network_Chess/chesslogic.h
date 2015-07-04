@@ -2,13 +2,14 @@
 #define CHESSLOGIC_H
 
 #include "QString"
+#include <QMap>
+#include "piece.h"
+#include "whitepawn.h"
+#include "move.h"
+#include "blackpawn.h"
 
 class ChessLogic
 {
-    struct position {
-      int x;
-      int y;
-    } ;
 
 //TODO Add notion of win / loose
 private:
@@ -43,11 +44,11 @@ private:
 
     int current_turn;
 
+    QMap<int, Piece*> pieces;
 public:
-    ChessLogic(int skirmish); // Initialize the game board
+    ChessLogic(); // Initialize the game board
     bool MovePiece(int old_x, int old_y, int new_x, int new_y);
     int** GetBoard(); // return A COPY of the array
-    int** GetPossibleMoves(position piece_position);
     int CheckResult(); //0 still played 1 white wins 2 black wins 3 draw
     void PrintGameBoard();
     bool IsPathEmpty(int old_x, int old_y, int new_x, int new_y);

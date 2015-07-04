@@ -1,10 +1,10 @@
 #include "chesslogic.h"
 #include <QDebug>
 #include <cmath>
+#include "piece.h"
 
-ChessLogic::ChessLogic(int skirmish)
+ChessLogic::ChessLogic()
 {
-
 
     //this->current_turn = CURRENT_TURN_WHITE;
     for(int i = 0; i < 8; i++)
@@ -17,55 +17,52 @@ ChessLogic::ChessLogic(int skirmish)
 
     current_turn = 1;
 
-    //init the skirmish (every skirmish has his own pieces)
-    if(skirmish == 5353534)
-    {
+    // White pieces
+    board[1][1] = 11;
+    board[2][1] = 11;
+    board[3][1] = 11;
+    board[4][1] = 11;
+    board[5][1] = 11;
+    board[6][1] = 11;
+    board[7][1] = 11;
+    board[0][1] = 11;
 
-    }
-    // General Case, standard chess game
-    else
-    {
-        //COLUMN, ROW
+    board[1][0] = 13;
+    board[2][0] = 15;
+    board[3][0] = 17;
+    board[4][0] = 18;
+    board[5][0] = 15;
+    board[6][0] = 13;
+    board[7][0] = 14;
+    board[0][0] = 14;
 
-        // White pieces
-        board[1][1] = 11;
-        board[2][1] = 11;
-        board[3][1] = 11;
-        board[4][1] = 11;
-        board[5][1] = 11;
-        board[6][1] = 11;
-        board[7][1] = 11;
-        board[0][1] = 11;
+    // Black pieces
+    board[3][6] = 21;
+    board[0][6] = 21;
+    board[7][6] = 21;
+    board[1][6] = 21;
+    board[6][6] = 21;
+    board[2][6] = 21;
+    board[5][6] = 21;
+    board[4][6] = 21;
 
-        board[1][0] = 13;
-        board[2][0] = 15;
-        board[3][0] = 17;
-        board[4][0] = 18;
-        board[5][0] = 15;
-        board[6][0] = 13;
-        board[7][0] = 14;
-        board[0][0] = 14;
+    board[1][7] = 23;
+    board[2][7] = 25;
+    board[3][7] = 27;
+    board[4][7] = 28;
+    board[5][7] = 25;
+    board[6][7] = 23;
+    board[7][7] = 24;
+    board[0][7] = 24;
 
-        // Black pieces
-        board[3][6] = 21;
-        board[0][6] = 21;
-        board[7][6] = 21;
-        board[1][6] = 21;
-        board[6][6] = 21;
-        board[2][6] = 21;
-        board[5][6] = 21;
-        board[4][6] = 21;
 
-        board[1][7] = 23;
-        board[2][7] = 25;
-        board[3][7] = 27;
-        board[4][7] = 28;
-        board[5][7] = 25;
-        board[6][7] = 23;
-        board[7][7] = 24;
-        board[0][7] = 24;
-    }
-
+    //Initialize the pieces in the map;
+    qDebug() << "bbbbb";
+    //WhitePawn wp;
+    //Piece *a = &wp;
+   // pieces[11] = a;
+   // pieces[11]->getPossibleMoves(1,1);
+    qDebug() << "aaaaaaaaaaaaaaaaaaaaaaaaaaAAAA";
 }
 
 /*
@@ -76,6 +73,13 @@ ChessLogic::ChessLogic(int skirmish)
 bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 {
     int piece_type = board[old_x][old_y];
+
+    WhitePawn wp;
+    Piece *a = &wp;
+    pieces[11] = a;
+    BlackPawn bp;
+    Piece *b = &bp;
+    pieces[21] = b;
 
     qDebug() << "old_pos.x: "  << old_x;
     qDebug() << "old_pos.y: "  << old_y;
@@ -96,7 +100,11 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 
     if(piece_type != 13 && piece_type != 23)
     {
-        IsPathEmpty( old_x,  old_y,  new_x,  new_y);
+        bool empty_path = IsPathEmpty( old_x,  old_y,  new_x,  new_y);
+        if(!empty_path)
+        {
+            return false;
+        }
     }
     if(new_x > 7 || new_x < 0 || new_y > 7 || new_y < 0)
     {
@@ -107,33 +115,66 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     {
         return false;
     }
-    //White Pawn
-    if(piece_type == 11)
+
+    if(!pieces.contains(piece_type))
     {
-        if(!((new_y == old_y +1) // standard move
-           || (new_y == old_y +2) // first possible move
-           || (new_y == old_y +1 && new_x == old_x + 1) // take piece left
-           || (new_y == old_y +1 && new_x == old_x - 1))) // take piece right
+        return false;
+    }
+
+    bool is_move_possible = false;
+    QVector<Move> moves = pieces[piece_type]->getPossibleMoves(old_x, old_y);
+    qDebug() << "Possible moves are: " << moves.length();
+    for(int i = 0; i < moves.length(); i++)
+    {
+        qDebug() << "New possible move!" << moves[i].x << "  " << moves[i].y;
+        if(moves[i].x == new_x && moves[i].y == new_y)
         {
-            return false;
+            qDebug() << " Matching move!";
+            is_move_possible = true;
+            if(moves[i].must_be_first)
+            {
+                qDebug() << " Must be first";
+                if(old_y != 1 && old_y != 6)
+                {
+                    qDebug() << "Is not first";
+                    is_move_possible = false;
+                }
+            }
+            if(moves[i].must_contain_enemy)
+            {
+                qDebug() << " Must contain enemy";
+                if(board[new_x][new_y] == 0)
+                {
+                    qDebug() << " Doesn't contain enemey";
+                    is_move_possible = true;
+                }
+            }
         }
     }
+    if(!is_move_possible)
+    {
+        qDebug() << "Move is not possible!";
+        return false;
+    }
+/*
     // knights
     else if(piece_type == 13 || piece_type == 23)
     {
-/*        if(!(
+/*
+        if(!(
             ()
-            ()
-            ()
-            ()
-            ()
-            ()
-            ()
-            ()
+            ||()
+            ||()
+            ||()
+            ||()
+            ||()
+            ||()
+            ||()
             ))
+
         {
 
-        }*/
+        }
     }
     //White rook
     else if(piece_type == 12 || piece_type == 22)
@@ -187,6 +228,7 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     {
         //empty since queens can move everywhere
     }
+*/
 
     // Check if you are not killing your own piece
     int taken_type =  board[new_x][new_y];
@@ -232,11 +274,6 @@ int** ChessLogic::GetBoard() // return A COPY of the array
     return board_copy;
 }
 
-int** ChessLogic::GetPossibleMoves(position piece_position)
-{
-    int **board;
-    return board;
-}
 
 int ChessLogic::CheckResult(){return 0;} //0 still played 1 white wins 2 black wins 3 draw
 
@@ -266,7 +303,7 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
     {
         if(old_x != new_x)
         {
-            qDebug() << "X is different!";
+            //qDebug() << "X is different!";
             if(old_x < new_x)
             {
                 old_x++;
@@ -275,11 +312,11 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
             {
                 old_x--;
             }
-            qDebug() << "New x is: " << old_x;
+            //qDebug() << "New x is: " << old_x;
         }
          if(old_y != new_y)
         {
-             qDebug() << "Y is different";
+             //qDebug() << "Y is different";
             if(old_y < new_y)
             {
                 old_y++;
@@ -288,14 +325,14 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
             {
                 old_y--;
             }
-            qDebug() << "New y is: " << old_y;
+            //qDebug() << "New y is: " << old_y;
         }
         if(board[old_x][old_y] != 0)
         {
             qDebug() << "There is NO path!";
             return false;
         }
-        qDebug() << "We are at: " << old_x << " " << old_y << "and value is: " << board[old_x][old_y];
+        //qDebug() << "We are at: " << old_x << " " << old_y << "and value is: " << board[old_x][old_y];
     }
     qDebug() << "There is a path!";
     return true;

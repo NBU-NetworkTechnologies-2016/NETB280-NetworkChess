@@ -1,13 +1,17 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "QString"
+#include <QPair>
+#include <QVector>
+#include "move.h"
+#include <QDebug>
 
 class Piece
 {
 public:
-    Piece();
-    //Piece(QString name, );
+     Piece();
+     virtual QVector<Move > getPossibleMoves(int x, int y);
+     ~Piece();
 };
 
 #endif // PIECE_H

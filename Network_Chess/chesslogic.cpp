@@ -3,6 +3,7 @@
 #include <cmath>
 #include "piece.h"
 
+
 ChessLogic::ChessLogic()
 {
 
@@ -55,7 +56,8 @@ ChessLogic::ChessLogic()
     board[7][7] = 24;
     board[0][7] = 24;
 
-
+    board[4][4] = 17;
+    board[6][4] = 27;
     //Initialize the pieces in the map;
     qDebug() << "bbbbb";
     //WhitePawn wp;
@@ -80,6 +82,10 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     BlackPawn bp;
     Piece *b = &bp;
     pieces[21] = b;
+    King k;
+    Piece* kk = &k;
+    pieces[17] = kk;
+    pieces[27] = kk;
 
     qDebug() << "old_pos.x: "  << old_x;
     qDebug() << "old_pos.y: "  << old_y;
@@ -209,19 +215,6 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         )){
             return false;
         }
-    }
-    //black pawn
-    else if(piece_type == 21)
-    {
-        if(!((new_y == old_y -1) // standard move
-           || (new_y == old_y -2) // first possible move
-           || (new_y == old_y -1 && new_x == old_x + 1) // take piece left
-           || (new_y == old_y -1 && new_x == old_x - 1))) // take piece right
-        {
-            return false;
-        }
-
-
     }
     //queens
     else if(piece_type == 18 || piece_type == 28)

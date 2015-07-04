@@ -7,6 +7,7 @@
 #include "whitepawn.h"
 #include "move.h"
 #include "blackpawn.h"
+#include "king.h"
 
 class ChessLogic
 {

@@ -145,7 +145,7 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
                     is_move_possible = true;
                 }
             }
-            if(moves[i].can_fly)
+            if(!moves[i].can_fly)
             {
                 if(!IsPathEmpty( old_x,  old_y,  new_x,  new_y))
                 {

@@ -118,6 +118,11 @@ void MainBoard::movingPieces()
         //positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(currentPieceIcon);
         cl->MovePiece(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY,
                       globalButtonCoordinateX, globalButtonCoordinateY);
+        int game_state = cl->CheckResult();
+        if(game_state != 0)
+        {
+            QMessageBox::information(0, QString("Information"), QString("The game has finished. Player  " + QString::number(game_state) + " wins!"), QMessageBox::Ok);
+        }
         RefreshBoard();
 
         //onMove = false;

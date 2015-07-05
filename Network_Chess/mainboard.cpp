@@ -105,7 +105,10 @@ void MainBoard::movingPieces()
         
         qDebug() << "onMove-true";
         positions[oldGlobalButtonCoordinateX][oldGlobalButtonCoordinateY]->setIcon(QIcon());
-        positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(currentPieceIcon);
+        //positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(currentPieceIcon);
+        cl->MovePiece(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY,
+                      globalButtonCoordinateX, globalButtonCoordinateY);
+        RefreshBoard();
 
 
     }

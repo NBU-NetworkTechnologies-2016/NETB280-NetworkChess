@@ -15,9 +15,12 @@ MainBoard::MainBoard(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainBoard)
 {
+    onMove = false;
     ui->setupUi(this);
     this->setFixedSize(1920, 1080);
     this->setStyleSheet("background-color: #F0E8E8;");
+
+    phase = 0;
 
     //TODO this must not be hardcoded when we have more than 1 skirmishes
     cl = new ChessLogic();
@@ -99,6 +102,13 @@ void MainBoard::pieceSignals()
 }
 void MainBoard::movingPieces()
 {
+    qDebug() << "!!!!!!!!!!!!! MOVING_PIECES  phase: " << phase;
+
+    if(phase <= 1)
+    {
+        return;
+    }
+    phase = 0;
 
     if(onMove)
     {
@@ -110,13 +120,13 @@ void MainBoard::movingPieces()
                       globalButtonCoordinateX, globalButtonCoordinateY);
         RefreshBoard();
 
-
+        //onMove = false;
     }
 }
 
 void MainBoard::movePieceStart(int i)
 {
-
+    qDebug() << "!!!!!!!! MOVE_PIECE_START";
     mappedButtons = i;//from value to index
 
     qDebug() << "mappedButtons: " << mappedButtons;
@@ -144,15 +154,25 @@ void MainBoard::movePieceStart(int i)
     qDebug() << "X: " << globalButtonCoordinateX;
     qDebug() << "Y: " << globalButtonCoordinateY;
 
-    QIcon currentIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
-    if((currentIcon.isNull()) == false)
+    if(phase == 1)
     {
+        phase++;
+    }
+
+    QIcon currentIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
+    if((currentIcon.isNull()) == false )
+    {
+        phase++;
+        if(phase == 3)
+        {
+            return;
+        }
         onMove = true;
         currentPieceIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
         oldGlobalButtonCoordinateX = globalButtonCoordinateX;
         oldGlobalButtonCoordinateY = globalButtonCoordinateY;
     }
-
+    qDebug() << "EXITING Beginblabla phase: " << phase;
 }
 
 //will disable buttons that are not used at start game

@@ -58,6 +58,8 @@ private:
 
     void initializeFigures();
 
+    int phase; //curent part of turn
+
     Ui::MainBoard *ui;
     const static int BOARD_ROWS = 8;
     const static int BOARD_COLS = 8;

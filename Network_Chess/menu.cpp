@@ -30,3 +30,12 @@ void Menu::on_pushButton_3_clicked()
 {
     w.show();
 }
+
+/*
+ * Start the new game
+ */
+void Menu::on_pushButton_4_clicked()
+{
+    MainBoard w;
+    w.show();
+}

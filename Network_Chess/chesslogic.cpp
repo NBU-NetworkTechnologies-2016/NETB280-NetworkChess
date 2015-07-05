@@ -61,11 +61,11 @@ ChessLogic::ChessLogic()
     //Initialize the pieces in the map;
 }
 
+
 /*
  * checks if a piece can move to a location. if it can moves it.
- * if it can't move throws an exception
+ * @paramOUT true if the piece is moved, false if the move is not possible
  */
-
 bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
 {
     int piece_type = board[old_x][old_y];
@@ -173,7 +173,9 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
     return true;
 }
 
-int** ChessLogic::GetBoard() // return A COPY of the array
+
+// return A COPY of the board
+int** ChessLogic::GetBoard()
 {
     int** board_copy;
     board_copy = 0;
@@ -192,14 +194,18 @@ int** ChessLogic::GetBoard() // return A COPY of the array
     return board_copy;
 }
 
+
+/*
 //0 still played 1 white wins 2 black wins 3 draw
+    Returns the current game state
+*/
 int ChessLogic::CheckResult()
 {
     return game_state;
 }
 
 /*
- * This function is made for internal debug use
+ * This function is made for internal debug use, prints the current game board in human readable format
  */
 void ChessLogic::PrintGameBoard()
 {
@@ -217,6 +223,11 @@ void ChessLogic::PrintGameBoard()
     }
 }
 
+
+/*
+ * Checks if there is a path without obsticles from the old_x, old_y to the new_x, new_y
+ * @paramOUT true if there is a path, false if there is no path
+ */
 bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
 {
     qDebug() << "Entering IsPathEmpty old_x: " << old_x << " old y: " << old_y << " new_x: " << new_x << " new_y: " << new_y;
@@ -263,6 +274,13 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
     return true;
 }
 
+
+/*
+ * Fetches all possible moves relative to the current coordinates for a specific piece
+ * @paramIN x the x coordinate
+ * @paramIN y the y coordinate
+ * @paramOUT QVector<Move> a vector containing all possible moves.
+ */
 QVector<Move> ChessLogic::GetPossibleTurns(int x, int y)
 {
     WhitePawn wp;
@@ -301,4 +319,19 @@ QVector<Move> ChessLogic::GetPossibleTurns(int x, int y)
         return a;
     }
     return pieces[piece_type]->getPossibleMoves(x, y);
+}
+
+/*
+ * The current player surrenders the game
+ */
+void ChessLogic::Surrender()
+{
+    if(this->current_turn == 1)
+    {
+        game_state = 2;
+    }
+    else
+    {
+        game_state = 2;
+    }
 }

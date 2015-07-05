@@ -59,6 +59,7 @@ public:
     void PrintGameBoard();
     bool IsPathEmpty(int old_x, int old_y, int new_x, int new_y);
     QVector<Move> GetPossibleTurns(int x, int y);
+    void Surrender();
 };
 
 #endif // CHESSLOGIC_H

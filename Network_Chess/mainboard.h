@@ -29,8 +29,8 @@ public:
     QIcon currentPieceIcon;
     int globalButtonCoordinateX;//the container for the current pressed button coordinates X axis
     int globalButtonCoordinateY;//analogy
-    int oldGlobalButtonCoordinateX;
-    int oldGlobalButtonCoordinateY;
+    int oldGlobalButtonCoordinateX;//the X axis coordinates of the first selected piece
+    int oldGlobalButtonCoordinateY;//analogy
     int mappedButtons;//mapped values, index of a pushed button
     //end sasho test
 
@@ -44,14 +44,14 @@ public:
 
 private slots:
     //sasho test
-    void movePieceStart(int);
-    void movingPieces();
+    void movePieceStart(int);//the start fuction that is triggered when we click on a piece we wish to move
+    void movingPieces();//the end function that is triggered when we click on the button we wish to move on
     //end sasho test
     void on_pushButton_clicked();
 
 private:
     //sasho test
-    QSignalMapper *mapper;
+    QSignalMapper *mapper;//mapper that will map some value on every button
 
     //sasho end
     void initializeBoard();

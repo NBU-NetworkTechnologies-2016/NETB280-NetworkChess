@@ -102,7 +102,7 @@ void MainBoard::pieceSignals()
 
 
 }
-//the first phase function that will triger when we select a piece we wish to move
+//the second phase function that will triger we select the button we wish to move out already selected piece
 void MainBoard::movingPieces()
 {
     qDebug() << "!!!!!!!!!!!!! MOVING_PIECES  phase: " << phase;
@@ -117,19 +117,19 @@ void MainBoard::movingPieces()
     {
         
         qDebug() << "onMove-true";
-        positions[oldGlobalButtonCoordinateX][oldGlobalButtonCoordinateY]->setIcon(QIcon());
+        positions[oldGlobalButtonCoordinateX][oldGlobalButtonCoordinateY]->setIcon(QIcon());//we remove the icon on the first selected button
         //positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(currentPieceIcon);
         cl->MovePiece(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY,
                       globalButtonCoordinateX, globalButtonCoordinateY);
-        int game_state = cl->CheckResult();
-        if(game_state != 0)
+        int game_state = cl->CheckResult();//checks the game state
+        if(game_state != 0)//if we have a winner
         {
             QMessageBox::information(0, QString("Information"), QString("The game has finished. Player  " + QString::number(game_state) + " wins!"), QMessageBox::Ok);
         }
 
         //onMove = false;
     }
-    RefreshBoard();
+    RefreshBoard();//we refresh the board
 }
 //the first phase function that will triger when we select a piece we wish to move
 void MainBoard::movePieceStart(int i)

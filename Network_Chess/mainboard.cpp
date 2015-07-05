@@ -63,31 +63,32 @@ MainBoard::MainBoard(QWidget *parent) :
     createBoard(); //creating the board and the QpushButtons on top of the board
     RefreshBoard();
     //positions[5][5]->setStyleSheet("background-color: red");
-    mapper = new QSignalMapper(this);
-    connect(mapper, SIGNAL(mapped(int)), this, SLOT(movePieceStart(int)));
-    int holder[8][8];
+    mapper = new QSignalMapper(this);//initializing the mapper
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(movePieceStart(int)));//connecting the mapper with signal that wil return int to the first phase function
+    int holder[8][8];//2d array with corresponding indexed with the buttons coordinates
 
 
     for(int i = 0; i < 8; i++)
     {
         for(int j = 0; j < 8; j++)
         {
-            holder[0][j] = 100 + j;
+            holder[0][j] = 100 + j;//assigning some specific values, so we can transfor them later into appropriate index values
             if(i > 0)
             {
-                holder[i][j] = (i * 10) + j;
+                holder[i][j] = (i * 10) + j;//example: holder[0][1] will contain 101 value, holder[3][2] will container 32 
             }
 
-            mapper->setMapping(positions[i][j], holder[i][j]);
-            connect(positions[i][j], SIGNAL(clicked()), mapper, SLOT(map()));
+            mapper->setMapping(positions[i][j], holder[i][j]);//mapping the buttons with the holder array
+            connect(positions[i][j], SIGNAL(clicked()), mapper, SLOT(map()));//connecting all the buttons with the mapper
 
         }
 
     }
 
-    pieceSignals();
+    pieceSignals();//signals for the second click
 
 }
+
 void MainBoard::pieceSignals()
 {
     //connect(positions[globalButtonCoordinateX][globalButtonCoordinateY], SIGNAL(clicked()), this, SLOT(movePieceStart(int)));

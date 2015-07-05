@@ -353,8 +353,10 @@ int** ChessLogic::GetPossibleTurnsVisual(int x, int y)
                 qDebug() << "Skipping ";
                 continue;
             }
-
-            gameBoard1[moves[i].x][moves[i].y] = 100;
+            if(gameBoard1[moves[i].x][moves[i].y] == 0)
+            {
+                gameBoard1[moves[i].x][moves[i].y] = 100;
+            }
     }
     for(int i = 0; i < 8; i++)
     {

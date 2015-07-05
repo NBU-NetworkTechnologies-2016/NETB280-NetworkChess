@@ -39,6 +39,7 @@ public:
 
     void disableButtons();
     void pieceSignals();
+    void RefreshBoard1(int x, int y);
     ~MainBoard();
 
 private slots:
@@ -64,7 +65,7 @@ private:
     const static int BOARD_ROWS = 8;
     const static int BOARD_COLS = 8;
 
-    const static int NUMBER_OF_FIGURES = 6;
+    const static int NUMBER_OF_FIGURES = 7;
 
     const static int squares_size = 100;
     const static int squares_label_width = 12;
@@ -91,7 +92,7 @@ private:
     QIcon* blackFigures[NUMBER_OF_FIGURES];
     QIcon* whiteFigures[NUMBER_OF_FIGURES];
 
-    QIcon* figures[40];
+    QIcon* figures[101];
 
     QSize size;
 };

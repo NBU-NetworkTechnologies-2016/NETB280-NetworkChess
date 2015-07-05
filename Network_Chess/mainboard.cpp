@@ -22,11 +22,10 @@ MainBoard::MainBoard(QWidget *parent) :
 
     phase = 0;
 
-    //TODO this must not be hardcoded when we have more than 1 skirmishes
     cl = new ChessLogic();
 
     QString whiteFigureNames[NUMBER_OF_FIGURES] = {":/wPawn", ":/wBishop", ":/wHorse", ":/wRook", ":/wQueen", ":/wKing"};
-    QString blackFigureNames[NUMBER_OF_FIGURES] = {":/bPawn", ":/bBishop", ":/bHorse", ":/bRook", ":/bQueen", ":/bKing"};
+    QString blackFigureNames[NUMBER_OF_FIGURES] = {":/bPawn", ":/bBishop", ":/bHorse", ":/bRook", ":/bQueen", ":/bKing", ":/red.png"};
     for(int i = 0; i < 50; i++)
     {
         figures[i] = new QIcon(":/bKing");
@@ -50,6 +49,8 @@ MainBoard::MainBoard(QWidget *parent) :
     figures[25] = new QIcon(blackFigureNames[1]);
     figures[27] = new QIcon(blackFigureNames[5]);
     figures[28] =new QIcon( blackFigureNames[4]);
+
+    figures[100] =new QIcon( blackFigureNames[6]);
     //Initialize Figures
     size.setHeight(60);
     size.setWidth(60);
@@ -123,18 +124,16 @@ void MainBoard::movingPieces()
         {
             QMessageBox::information(0, QString("Information"), QString("The game has finished. Player  " + QString::number(game_state) + " wins!"), QMessageBox::Ok);
         }
-        RefreshBoard();
 
         //onMove = false;
     }
+    RefreshBoard();
 }
 
 void MainBoard::movePieceStart(int i)
 {
-    qDebug() << "!!!!!!!! MOVE_PIECE_START";
     mappedButtons = i;//from value to index
 
-    qDebug() << "mappedButtons: " << mappedButtons;
     int firstColumn = 100;//first column mapping
     int currentX = 0;//all other columns mapping
     for(int z = 10; z <=80; z+=10)
@@ -178,10 +177,9 @@ void MainBoard::movePieceStart(int i)
         oldGlobalButtonCoordinateX = globalButtonCoordinateX;
         oldGlobalButtonCoordinateY = globalButtonCoordinateY;
     }
-    qDebug() << "EXITING Beginblabla phase: " << phase << "oldx: " << oldGlobalButtonCoordinateX  <<" oldy: " << oldGlobalButtonCoordinateY;
     if(phase == 1)
     {
-        cl->GetPossibleTurnsVisual(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY);
+        RefreshBoard1(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY);
     }
 }
 
@@ -281,12 +279,36 @@ void MainBoard::RefreshBoard()
     {
         for(int j = 0; j < 8; j++)
         {
+
+            if(currentBoard[i][j] > 0)
+            {
+                positions[i][j]->setIcon(*figures[currentBoard[i][j]]);
+            }
+            else if(currentBoard[i][j] == 0)
+            {
+                positions[i][j]->setIcon(QIcon());
+            }
+        }
+    }
+
+}
+
+void MainBoard::RefreshBoard1(int x, int y)
+{
+
+    int** currentBoard = cl->GetPossibleTurnsVisual(x, y);
+
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            qDebug() << i << "  " << j << "  ";
             //*figures[currentBoard[i][j]];
             if(currentBoard[i][j] > 0)
             {
                 positions[i][j]->setIcon(*figures[currentBoard[i][j]]);
             }
-            //qDebug() << i << "  " << j << "  " << currentBoard[i][j];
+            qDebug() << i << "  " << j << "  " << currentBoard[i][j];
         }
     }
 

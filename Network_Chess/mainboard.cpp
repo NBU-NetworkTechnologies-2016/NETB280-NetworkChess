@@ -102,6 +102,7 @@ void MainBoard::pieceSignals()
 
 
 }
+//the first phase function that will triger when we select a piece we wish to move
 void MainBoard::movingPieces()
 {
     qDebug() << "!!!!!!!!!!!!! MOVING_PIECES  phase: " << phase;
@@ -112,7 +113,7 @@ void MainBoard::movingPieces()
     }
     phase = 0;
 
-    if(onMove)
+    if(onMove)//if we are on the move
     {
         
         qDebug() << "onMove-true";
@@ -130,13 +131,15 @@ void MainBoard::movingPieces()
     }
     RefreshBoard();
 }
-
+//the first phase function that will triger when we select a piece we wish to move
 void MainBoard::movePieceStart(int i)
 {
-    mappedButtons = i;//from value to index
+    mappedButtons = i;//we assign the mapped values to i, the parameter of the function
 
     int firstColumn = 100;//first column mapping
     int currentX = 0;//all other columns mapping
+    //we calculate the appropriate indexx values from the mapped vlues we get
+    //example: i = 55, globalButtonCoordinateX = 5; globalButtonCoordinateY = 5;
     for(int z = 10; z <=80; z+=10)
     {
         currentX++;
@@ -156,7 +159,7 @@ void MainBoard::movePieceStart(int i)
             }
          }
     }
-    qDebug() << "X: " << globalButtonCoordinateX;
+    qDebug() << "X: " << globalButtonCoordinateX;//check if we get the correct values
     qDebug() << "Y: " << globalButtonCoordinateY;
 
     if(phase == 1)
@@ -164,8 +167,8 @@ void MainBoard::movePieceStart(int i)
         phase++;
     }
 
-    QIcon currentIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
-    if((currentIcon.isNull()) == false )
+    QIcon currentIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();//we contain the current selected icon to currentIcon
+    if((currentIcon.isNull()) == false )//if the button we click has an icon proceed
     {
 
         phase++;
@@ -173,14 +176,14 @@ void MainBoard::movePieceStart(int i)
         {
             return;
         }
-        onMove = true;
-        currentPieceIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
-        oldGlobalButtonCoordinateX = globalButtonCoordinateX;
+        onMove = true;//we notify that we are on a move when a button with icon is clicked
+        currentPieceIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();//we put the icon of the button that is clicked into a global QIcon valuable
+        oldGlobalButtonCoordinateX = globalButtonCoordinateX;//we save the coordinates of the first button into a seperate variable
         oldGlobalButtonCoordinateY = globalButtonCoordinateY;
     }
     if(phase == 1)
     {
-        RefreshBoard1(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY);
+        RefreshBoard1(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY);//the possible moves for the selected piece
     }
 }
 

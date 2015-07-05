@@ -170,6 +170,19 @@ bool ChessLogic::MovePiece(int old_x, int old_y, int new_x, int new_y)
         game_state = 2;
     }
     board[new_x][new_y] = piece_type;
+    //Pawn promotion. SHOULD NOT BE HERE, BUT MEH NO TIME MUST WRITE NETWORKING STUFF
+    if((new_y == 0 || new_y == 7) && (piece_type == 11 || piece_type == 21))
+    {
+
+        if(piece_owner == 1)
+        {
+            board[new_x][new_y] = 18;
+        }
+        else
+        {
+            board[new_x][new_y] = 28;
+        }
+    }
     return true;
 }
 
@@ -268,6 +281,7 @@ bool ChessLogic::IsPathEmpty(int old_x, int old_y, int new_x, int new_y)
             qDebug() << "There is NO path!";
             return false;
         }
+
         //qDebug() << "We are at: " << old_x << " " << old_y << "and value is: " << board[old_x][old_y];
     }
     qDebug() << "There is a path!";

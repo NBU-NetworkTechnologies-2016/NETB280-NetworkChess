@@ -1,5 +1,8 @@
 #include "move.h"
 
+/*
+ * Object which holds all the checks which must be performed on a move and it's new coordinates
+ */
 Move::Move(int x, int y, bool must_be_first, bool must_contain_enemy, bool can_fly)
 {
     this->x = x;

@@ -1,7 +1,9 @@
 #include "whitepawn.h"
 
 
-
+/*
+ * Generates all possible moves for the piece
+ */
 QVector<Move > WhitePawn::getPossibleMoves(int x, int y)
 {
     qDebug() << "White Pawn getPossibleMoves!!!!";

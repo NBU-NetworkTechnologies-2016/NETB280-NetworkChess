@@ -8,6 +8,10 @@ Bishop::~Bishop()
 {
 }
 
+
+/*
+ * Generates all possible moves for the piece
+ */
 QVector<Move > Bishop::getPossibleMoves(int x, int y)
 {
     qDebug() << "Bishop getPossibleMoves!!!!";

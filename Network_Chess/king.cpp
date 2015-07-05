@@ -8,6 +8,9 @@ King::~King()
 {
 }
 
+/*
+ * Generates all possible moves for the piece
+ */
 QVector<Move > King::getPossibleMoves(int x, int y)
 {
     qDebug() << "King getPossibleMoves!!!!";

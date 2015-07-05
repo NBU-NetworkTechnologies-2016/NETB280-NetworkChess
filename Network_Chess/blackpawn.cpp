@@ -8,6 +8,9 @@ BlackPawn::~BlackPawn()
 {
 }
 
+/*
+ * Generates all possible moves for the piece
+ */
 QVector<Move > BlackPawn::getPossibleMoves(int x, int y)
 {
     qDebug() << "White Pawn getPossibleMoves!!!!";

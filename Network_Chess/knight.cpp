@@ -8,6 +8,9 @@ Knight::~Knight()
 {
 }
 
+/*
+ * Generates all possible moves for the piece
+ */
 QVector<Move > Knight::getPossibleMoves(int x, int y)
 {
     qDebug() << "Knight getPossibleMoves!!!!";

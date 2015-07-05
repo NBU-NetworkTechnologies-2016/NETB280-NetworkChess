@@ -10,6 +10,9 @@ Rook::~Rook()
 
 }
 
+/*
+ * Generates all possible moves for the piece
+ */
 QVector<Move > Rook::getPossibleMoves(int x, int y)
 {
     qDebug() << "Rook getPossibleMoves!!!!";

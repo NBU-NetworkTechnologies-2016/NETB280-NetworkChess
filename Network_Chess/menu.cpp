@@ -7,6 +7,7 @@ Menu::Menu(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Menu)
 {
+    //MainBoard* w = new MainBoard();
     ui->setupUi(this);
 
 }
@@ -36,6 +37,6 @@ void Menu::on_pushButton_3_clicked()
  */
 void Menu::on_pushButton_4_clicked()
 {
-    MainBoard w;
+
     w.show();
 }

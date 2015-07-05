@@ -10,9 +10,11 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainBoard w;
-    w.show();
+    //MainBoard w;
+    //w.show();
 
+    Menu m;
+    m.show();
     qDebug() << "Boom!";
     //w.disableButtons();//disabling unsued buttons at newgame
     //w.RefreshBoard();

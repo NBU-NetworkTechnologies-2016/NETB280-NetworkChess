@@ -84,27 +84,33 @@ MainBoard::MainBoard(QWidget *parent) :
     pieceSignals();
 
 }
-
-void MainBoard::movingPieces()
-{
-    if(onMove)
-    {
-        qDebug() << "onMove-true";
-
-        positions[0][5]->setIcon(currentPieceIcon);
-        qDebug() << "sled slagane na nova ikona";
-
-
-    }
-   // positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(QIcon());
-}
-
 void MainBoard::pieceSignals()
 {
     //connect(positions[globalButtonCoordinateX][globalButtonCoordinateY], SIGNAL(clicked()), this, SLOT(movePieceStart(int)));
-    connect(positions[0][5], SIGNAL(clicked()), this, SLOT(movingPieces()));
+    for(int i = 0; i < 8; i++)
+    {
+        for(int j = 0; j < 8; j++)
+        {
+            connect(positions[i][j], SIGNAL(clicked()), this, SLOT(movingPieces()));
+        }
+    }
+
 
 }
+void MainBoard::movingPieces()
+{
+
+    if(onMove)
+    {
+        
+        qDebug() << "onMove-true";
+        positions[oldGlobalButtonCoordinateX][oldGlobalButtonCoordinateY]->setIcon(QIcon());
+        positions[globalButtonCoordinateX][globalButtonCoordinateY]->setIcon(currentPieceIcon);
+
+
+    }
+}
+
 void MainBoard::movePieceStart(int i)
 {
 
@@ -140,6 +146,8 @@ void MainBoard::movePieceStart(int i)
     {
         onMove = true;
         currentPieceIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
+        oldGlobalButtonCoordinateX = globalButtonCoordinateX;
+        oldGlobalButtonCoordinateY = globalButtonCoordinateY;
     }
 
 }

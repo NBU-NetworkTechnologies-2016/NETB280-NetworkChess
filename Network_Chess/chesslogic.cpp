@@ -336,3 +336,35 @@ void ChessLogic::Surrender()
         game_state = 2;
     }
 }
+
+
+int** ChessLogic::GetPossibleTurnsVisual(int x, int y)
+{
+    qDebug() << "GET POSSIBLE TURNS VISUAL";
+    QVector<Move> moves = GetPossibleTurns(x, y);
+
+    int** gameBoard1 = GetBoard();
+    qDebug() << "GET POSSIBLE TURNS VISUAL AFTER BOARD length: "<< moves.length();
+    for(int i = 0; i < moves.length(); i++)
+    {
+            qDebug() << "GET POSSIBLE TURNS  " << moves[i].x << "  " << moves[i].y << " ";
+            if(moves[i].x > 7 || moves[i].y > 7 || moves[i].x < 0 || moves[i].y < 0)
+            {
+                qDebug() << "Skipping ";
+                continue;
+            }
+
+            gameBoard1[moves[i].x][moves[i].y] = 100;
+    }
+    for(int i = 0; i < 8; i++)
+    {
+        QString row;
+        for(int j = 0; j < 8; j++)
+        {
+            row += QString::number(gameBoard1[j][i]);
+            row += "-";
+        }
+        qDebug() << row;
+    }
+    return gameBoard1;
+}

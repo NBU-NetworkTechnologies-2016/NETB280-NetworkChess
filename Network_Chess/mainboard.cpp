@@ -167,6 +167,7 @@ void MainBoard::movePieceStart(int i)
     QIcon currentIcon = positions[globalButtonCoordinateX][globalButtonCoordinateY]->icon();
     if((currentIcon.isNull()) == false )
     {
+
         phase++;
         if(phase == 3)
         {
@@ -177,7 +178,11 @@ void MainBoard::movePieceStart(int i)
         oldGlobalButtonCoordinateX = globalButtonCoordinateX;
         oldGlobalButtonCoordinateY = globalButtonCoordinateY;
     }
-    qDebug() << "EXITING Beginblabla phase: " << phase;
+    qDebug() << "EXITING Beginblabla phase: " << phase << "oldx: " << oldGlobalButtonCoordinateX  <<" oldy: " << oldGlobalButtonCoordinateY;
+    if(phase == 1)
+    {
+        cl->GetPossibleTurnsVisual(oldGlobalButtonCoordinateX, oldGlobalButtonCoordinateY);
+    }
 }
 
 //will disable buttons that are not used at start game

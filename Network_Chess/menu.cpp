@@ -27,6 +27,7 @@ void Menu::on_pushButton_clicked()
     w.show();
 }
 
+//join game
 void Menu::on_pushButton_3_clicked()
 {
     w.show();
@@ -39,4 +40,10 @@ void Menu::on_pushButton_4_clicked()
 {
 
     w.show();
+}
+
+//create game
+void Menu::on_pushButton_2_clicked()
+{
+    cg.show();
 }

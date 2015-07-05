@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "mainboard.h"
+#include "creategame.h"
 
 namespace Ui {
 class Menu;
@@ -25,9 +26,12 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Menu *ui;
     MainBoard w;
+    CreateGame cg;
 };
 
 #endif // MENU_H

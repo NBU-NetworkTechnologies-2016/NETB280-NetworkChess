@@ -9,6 +9,7 @@
 #include <QSize>
 #include <QObject>
 #include <QSignalMapper>
+#include <QMessageBox>
 
 #include "chesslogic.h";
 
@@ -45,6 +46,8 @@ private slots:
     void movePieceStart(int);
     void movingPieces();
     //end sasho test
+    void on_pushButton_clicked();
+
 private:
     //sasho test
     QSignalMapper *mapper;

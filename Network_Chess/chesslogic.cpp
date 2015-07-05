@@ -326,6 +326,7 @@ QVector<Move> ChessLogic::GetPossibleTurns(int x, int y)
  */
 void ChessLogic::Surrender()
 {
+    qDebug() << "Surrendering!";
     if(this->current_turn == 1)
     {
         game_state = 2;

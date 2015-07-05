@@ -265,3 +265,10 @@ MainBoard::~MainBoard()
     delete ui;
     delete cl;
 }
+
+void MainBoard::on_pushButton_clicked()
+{
+    cl->Surrender();
+    int state = cl->CheckResult();
+    QMessageBox::information(0, QString("Information"), QString("You've surrendered. Player  " + QString::number(state) + " wins!"), QMessageBox::Ok);
+}

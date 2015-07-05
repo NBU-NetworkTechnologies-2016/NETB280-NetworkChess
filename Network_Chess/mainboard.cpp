@@ -256,7 +256,7 @@ void MainBoard::RefreshBoard()
             {
                 positions[i][j]->setIcon(*figures[currentBoard[i][j]]);
             }
-            qDebug() << i << "  " << j << "  " << currentBoard[i][j];
+            //qDebug() << i << "  " << j << "  " << currentBoard[i][j];
         }
     }
 

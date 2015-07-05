@@ -299,8 +299,8 @@ QVector<Move> ChessLogic::GetPossibleTurns(int x, int y)
     pieces[23] = kkn;
     Rook rk;
     Piece* rrk = &rk;
-    pieces[12] = rrk;
-    pieces[22] = rrk;
+    pieces[14] = rrk;
+    pieces[24] = rrk;
 
     Bishop bb;
     Piece* bk = &bb;

@@ -24,7 +24,9 @@ SOURCES += main.cpp\
     knight.cpp \
     rook.cpp \
     bishop.cpp \
-    queen.cpp
+    queen.cpp \
+    creategame.cpp \
+    joingame.cpp
 
 HEADERS  += mainboard.h \
     menu.h \
@@ -37,10 +39,14 @@ HEADERS  += mainboard.h \
     knight.h \
     rook.h \
     bishop.h \
-    queen.h
+    queen.h \
+    creategame.h \
+    joingame.h
 
 FORMS    += mainboard.ui \
-    menu.ui
+    menu.ui \
+    creategame.ui \
+    joingame.ui
 
 RESOURCES += \
     resource.qrc

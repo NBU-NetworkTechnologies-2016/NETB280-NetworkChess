@@ -30,7 +30,7 @@ void Menu::on_pushButton_clicked()
 //join game
 void Menu::on_pushButton_3_clicked()
 {
-    w.show();
+    jg.show();
 }
 
 /*

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "mainboard.h"
 #include "creategame.h"
+#include "joingame.h"
 
 namespace Ui {
 class Menu;
@@ -32,6 +33,7 @@ private:
     Ui::Menu *ui;
     MainBoard w;
     CreateGame cg;
+    JoinGame jg;
 };
 
 #endif // MENU_H

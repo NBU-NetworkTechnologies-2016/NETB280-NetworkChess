@@ -52,8 +52,8 @@ MainBoard::MainBoard(QWidget *parent) :
 
     figures[100] =new QIcon( blackFigureNames[6]);
     //Initialize Figures
-    size.setHeight(60);
-    size.setWidth(60);
+    size.setHeight(30);
+    size.setWidth(30);
 
 
 
@@ -237,14 +237,14 @@ void MainBoard::createBoard()
     for(int i = 0; i < BOARD_COLS; i++)
     {
         square_letter_label[i]->setText(letter_label[i]);
-        square_letter_label[i]->setGeometry(x_axis[i] + 45, y_axis[7] + 100, squares_label_width, squares_label_height);
+        square_letter_label[i]->setGeometry(x_axis[i] + 23, y_axis[7] + 50, squares_label_width, squares_label_height);
 
         square_numb_label[i]->setText(numb_label[i]);
-        square_numb_label[i]->setGeometry(x_axis[0] - 25,y_axis[i] + 35, squares_label_width, squares_label_height);
+        square_numb_label[i]->setGeometry(x_axis[0] - 13,y_axis[i] + 18, squares_label_width, squares_label_height);
         for(int j = 0; j < BOARD_ROWS; j++)
         {
-            Sqares[i][j]->setGeometry(x_axis[i],y_axis[j], squares_size,squares_size);
-            positions[i][j]->setGeometry(x_axis[i],y_axis[j], squares_size,squares_size);
+            Sqares[i][j]->setGeometry(x_axis[i],y_axis[j], 50,50);
+            positions[i][j]->setGeometry(x_axis[i],y_axis[j], 50,50);
             positions[i][j]->setIconSize(size);
             positions[i][j]->setStyleSheet("background-color: transparent;");
             if((i%2) == 0)
@@ -330,4 +330,11 @@ void MainBoard::on_pushButton_clicked()
     cl->Surrender();
     int state = cl->CheckResult();
     QMessageBox::information(0, QString("Information"), QString("You've surrendered. Player  " + QString::number(state) + " wins!"), QMessageBox::Ok);
+}
+
+void MainBoard::on_pushButton_2_clicked()
+{
+    cl->Surrender();
+    int state = cl->CheckResult();
+    QMessageBox::information(0, QString("Information"), QString("The game is a draw as proposed by both players!"), QMessageBox::Ok);
 }

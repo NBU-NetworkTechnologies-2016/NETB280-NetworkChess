@@ -51,6 +51,9 @@ private:
     int current_turn;
     int game_state;
     QMap<int, Piece*> pieces;
+
+    bool black_has_surrendered;
+    bool white_has_surrendered;
 public:
     ChessLogic(); // Initialize the game board
     bool MovePiece(int old_x, int old_y, int new_x, int new_y);
@@ -61,6 +64,7 @@ public:
     QVector<Move> GetPossibleTurns(int x, int y);
     void Surrender();
     int** GetPossibleTurnsVisual(int x, int y);
+    void Draw();
 };
 
 #endif // CHESSLOGIC_H

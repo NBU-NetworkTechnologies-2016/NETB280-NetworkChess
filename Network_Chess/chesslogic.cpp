@@ -56,9 +56,14 @@ ChessLogic::ChessLogic()
     board[7][7] = 24;
     board[0][7] = 24;
 
-    board[4][4] = 15;
-    board[6][4] = 25;
+   // board[4][4] = 15;
+   board[6][4] = 25;
+    board[3][5] = 24;
+    //board[6][7] = 23;
     //Initialize the pieces in the map;
+
+    black_has_surrendered = false;
+    white_has_surrendered = false;
 }
 
 
@@ -383,4 +388,22 @@ int** ChessLogic::GetPossibleTurnsVisual(int x, int y)
         qDebug() << row;
     }
     return gameBoard1;
+}
+
+
+void  ChessLogic::Draw()
+{
+    if(this->current_turn == 1)
+    {
+        white_has_surrendered = true;
+    }
+    else
+    {
+        black_has_surrendered = true;
+    }
+
+    if(white_has_surrendered && black_has_surrendered)
+    {
+        game_state = 3;
+    }
 }

@@ -49,6 +49,8 @@ private slots:
     //end sasho test
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     //sasho test
     QSignalMapper *mapper;//mapper that will map some value on every button
@@ -71,8 +73,8 @@ private:
     const static int squares_label_width = 12;
     const static int squares_label_height = 20;
 
-    int x_axis[8] = {480, 580, 680, 780, 880, 980, 1080, 1180}; //pushing columns from left to right, starting at 480 pixels
-    int y_axis[8] = {50, 150, 250, 350, 450, 550, 650, 750}; //pushing rows from top to bottom, starting at 50 pixels
+    int x_axis[8] = {240, 290, 340, 390, 440, 490, 540, 590}; //pushing columns from left to right, starting at 480 pixels
+    int y_axis[8] = {25, 75, 125, 175, 225, 275, 325, 375}; //pushing rows from top to bottom, starting at 50 pixels
 
     // Stores the states and logic of the game
     //ChessLogic cl = ChessLogic(0);
